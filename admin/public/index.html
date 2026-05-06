@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kayaman Admin</title>
+<script src="config.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 <style>
@@ -139,7 +140,6 @@ body{background:var(--bg);color:var(--text);font-family:sans-serif;font-size:14p
 <div class="lightbox" id="lightbox" onclick="closeLightbox()"><img id="lightboxImg" src="" alt=""></div>
 <script>
     const SCRIPT_URL = 'https://kayaman-api.skizztv.workers.dev';
-    const FIREBASE_CONFIG = { apiKey: "AIzaSyCj-GPirr5jjBNM7K0fbnOWZZ2B2S1LRSA", authDomain: "kayaman-shop-887a4.firebaseapp.com", projectId: "kayaman-shop-887a4", storageBucket: "kayaman-shop-887a4.firebasestorage.app", messagingSenderId: "169282636119", appId: "1:169282636119:web:f70838eb3a635581d81612" };
     firebase.initializeApp(FIREBASE_CONFIG);
     const auth = firebase.auth();
     let currentStaff = null, allOrders = [], currentTab = 'pending', currentOrder = null;
