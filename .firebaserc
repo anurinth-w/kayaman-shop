@@ -1,0 +1,18 @@
+{
+  "projects": {
+    "default": "kayaman-shop-887a4"
+  },
+  "targets": {
+    "kayaman-shop-887a4": {
+      "hosting": {
+        "order": [
+          "kayaman-shop-887a4"
+        ],
+        "admin": [
+          "kayaman-admin"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

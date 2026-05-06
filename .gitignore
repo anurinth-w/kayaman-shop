@@ -1,0 +1,53 @@
+# Firebase
+.firebase/
+firebase-debug.log
+
+# Firebase Agent Skills
+.adal/
+.agents/
+.augment/
+.bob/
+.claude/
+.codebuddy/
+.commandcode/
+.continue/
+.cortex/
+.crush/
+.factory/
+.goose/
+.iflow/
+.junie/
+.kilocode/
+.kiro/
+.kode/
+.mcpjam/
+.mux/
+.neovate/
+.openhands/
+.pi/
+.pochi/
+.qoder/
+.qwen/
+.roo/
+.trae/
+.vibe/
+.windsurf/
+.zencoder/
+skills/
+
+# Node
+node_modules/
+functions/node_modules/
+
+# VS Code
+.vs/
+*.sqlite
+
+# Sensitive — ห้าม push เด็ดขาด
+*.json
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db

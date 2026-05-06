@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayaman Shop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #111112;
+            --surface: #1a1a1c;
+            --surface2: #242426;
+            --border: #2e2e32;
+            --text: #e8e8e8;
+            --muted: #888;
+            --accent: #c8c8c8;
+            --highlight: #ffffff;
+            --danger: #ff4444;
+            --success: #44cc88;
+            --warning: #ffaa00;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Sarabun', sans-serif;
+            font-size: 15px;
+            min-height: 100vh;
+        }
+
+        .header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--surface);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Space Mono', monospace;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--highlight);
+        }
+
+        .btn-status {
+            font-size: 12px;
+            color: var(--muted);
+            background: none;
+            border: 1px solid var(--border);
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Sarabun', sans-serif;
+        }
+
+            .btn-status:hover {
+                border-color: var(--accent);
+                color: var(--accent);
+            }
+
+        .progress {
+            display: flex;
+            padding: 12px 20px;
+            gap: 8px;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .step {
+            flex: 1;
+            height: 3px;
+            background: var(--border);
+            border-radius: 2px;
+            transition: background 0.3s;
+        }
+
+            .step.active {
+                background: var(--highlight);
+            }
+
+            .step.done {
+                background: var(--success);
+            }
+
+        .page {
+            display: none;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+            .page.active {
+                display: block;
+            }
+
+        #page2, #page3 {
+            max-width: 540px;
+        }
+
+        .page-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: var(--muted);
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+            .search-box input {
+                width: 100%;
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: 8px;
+                padding: 10px 12px 10px 36px;
+                color: var(--text);
+                font-family: 'Sarabun', sans-serif;
+                font-size: 14px;
+                outline: none;
+            }
+
+                .search-box input:focus {
+                    border-color: var(--accent);
+                }
+
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .game-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .game-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            min-height: 90px;
+            justify-content: center;
+        }
+
+            .game-card:hover {
+                border-color: var(--accent);
+                background: var(--surface2);
+            }
+
+            .game-card.selected {
+                border-color: var(--highlight);
+                background: var(--surface2);
+            }
+
+            .game-card.hidden {
+                display: none;
+            }
+
+        .game-thumb {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .game-thumb-placeholder {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: var(--surface2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .game-name {
+            font-size: 12px;
+            font-weight: 500;
+            text-align: center;
+            color: var(--text);
+        }
+
+        .price-board {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+            .price-board img {
+                width: 100%;
+                display: block;
+            }
+
+        .field {
+            margin-bottom: 14px;
+        }
+
+        label {
+            display: block;
+            font-size: 11px;
+            letter-spacing: 1px;
+            color: var(--muted);
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 12px;
+            color: var(--text);
+            font-family: 'Sarabun', sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: border 0.2s;
+            -webkit-appearance: none;
+        }
+
+            input:focus, select:focus {
+                border-color: var(--accent);
+            }
+
+            select option {
+                background: var(--surface2);
+            }
+
+        .pkg-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            letter-spacing: 1px;
+            color: var(--muted);
+            text-transform: uppercase;
+        }
+
+        .btn-add-pkg {
+            font-size: 12px;
+            color: var(--accent);
+            background: none;
+            border: 1px dashed var(--border);
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Sarabun', sans-serif;
+        }
+
+            .btn-add-pkg:hover {
+                border-color: var(--accent);
+            }
+
+        .pkg-row {
+            display: grid;
+            grid-template-columns: 1fr 70px 32px;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .btn-remove {
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--muted);
+            cursor: pointer;
+            height: 38px;
+            width: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+            .btn-remove:hover {
+                border-color: var(--danger);
+                color: var(--danger);
+            }
+
+        .total-box {
+            background: var(--surface2);
+            border-radius: 8px;
+            padding: 12px 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 14px 0;
+        }
+
+        .total-label {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .total-amount {
+            font-family: 'Space Mono', monospace;
+            font-size: 18px;
+            color: var(--highlight);
+        }
+
+        .btn-primary {
+            width: 100%;
+            background: var(--highlight);
+            color: #111;
+            border: none;
+            border-radius: 8px;
+            padding: 14px;
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+            .btn-primary:hover {
+                opacity: 0.9;
+            }
+
+            .btn-primary:disabled {
+                opacity: 0.4;
+                cursor: not-allowed;
+            }
+
+        .btn-secondary {
+            width: 100%;
+            background: none;
+            color: var(--muted);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px;
+            font-family: 'Sarabun', sans-serif;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+            .btn-secondary:hover {
+                border-color: var(--accent);
+                color: var(--accent);
+            }
+
+        .order-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .order-label {
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .order-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 22px;
+            color: var(--highlight);
+            font-weight: 700;
+        }
+
+        .amount-display {
+            background: var(--surface2);
+            border-radius: 8px;
+            padding: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .amount-display-label {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .amount-display-value {
+            font-family: 'Space Mono', monospace;
+            font-size: 20px;
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .payment-title {
+            font-size: 11px;
+            letter-spacing: 1px;
+            color: var(--muted);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .payment-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 8px;
+            overflow: hidden;
+        }
+
+        .payment-header {
+            padding: 14px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+            .payment-header:hover {
+                background: var(--surface2);
+            }
+
+        .payment-header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .payment-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--surface2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .payment-name {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .payment-arrow {
+            color: var(--muted);
+            font-size: 12px;
+            transition: transform 0.2s;
+        }
+
+            .payment-arrow.open {
+                transform: rotate(180deg);
+            }
+
+        .payment-body {
+            display: none;
+            padding: 0 16px 16px;
+            border-top: 1px solid var(--border);
+        }
+
+            .payment-body.open {
+                display: block;
+            }
+
+        .payment-value {
+            font-family: 'Space Mono', monospace;
+            font-size: 18px;
+            color: var(--highlight);
+            padding: 12px 0 8px;
+            letter-spacing: 1px;
+        }
+
+        .btn-copy {
+            font-size: 12px;
+            color: var(--accent);
+            background: none;
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: 'Sarabun', sans-serif;
+        }
+
+            .btn-copy:hover {
+                border-color: var(--accent);
+            }
+
+            .btn-copy.copied {
+                color: var(--success);
+                border-color: var(--success);
+            }
+
+        .upload-zone {
+            border: 2px dashed var(--border);
+            border-radius: 10px;
+            padding: 36px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 14px;
+        }
+
+            .upload-zone:hover {
+                border-color: var(--accent);
+            }
+
+            .upload-zone.has-file {
+                border-color: var(--success);
+                border-style: solid;
+            }
+
+        .upload-icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .upload-text {
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .upload-preview {
+            width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            border-radius: 6px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .status-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .status-header {
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .status-badge {
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .status-Prepare {
+            background: #2a2a00;
+            color: var(--warning);
+        }
+
+        .status-Processing {
+            background: #002a1a;
+            color: var(--success);
+        }
+
+        .status-Error {
+            background: #2a0000;
+            color: var(--danger);
+        }
+
+        .status-Waiting {
+            background: #001a2a;
+            color: #44aaff;
+        }
+
+        .status-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+            .status-row:last-child {
+                border-bottom: none;
+            }
+
+        .status-key {
+            color: var(--muted);
+        }
+
+        .msg {
+            padding: 12px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+            .msg.success {
+                background: #002a1a;
+                color: var(--success);
+                border: 1px solid var(--success);
+            }
+
+            .msg.error {
+                background: #2a0000;
+                color: var(--danger);
+                border: 1px solid var(--danger);
+            }
+
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--border);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+            .modal.open {
+                display: flex;
+            }
+
+        .modal-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .modal-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 13px;
+            margin-bottom: 16px;
+            color: var(--highlight);
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="logo">KAYAMAN</div>
+        <button class="btn-status" onclick="openStatusModal()">ตรวจสอบออเดอร์</button>
+    </div>
+
+    <div class="progress">
+        <div class="step active" id="step1"></div>
+        <div class="step" id="step2"></div>
+        <div class="step" id="step3"></div>
+    </div>
+
+    <div class="page active" id="page1">
+        <div class="page-title">01 — เลือกเกม</div>
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchGame" placeholder="ค้นหาเกม..." oninput="filterGames(this.value)">
+        </div>
+        <div id="gameGrid" class="game-grid">
+            <div class="loading" style="grid-column:span 4"><div class="spinner"></div>กำลังโหลด...</div>
+        </div>
+    </div>
+
+    <div class="page" id="page2">
+        <div class="page-title">02 — กรอกข้อมูล</div>
+        <div id="priceBoard" class="price-board"></div>
+        <div class="pkg-header" style="margin-bottom:16px;">
+            <span class="section-label">Package ที่ต้องการ</span>
+            <button class="btn-add-pkg" onclick="addPkgRow()">+ เพิ่ม</button>
+        </div>
+        <div id="pkgList"></div>
+        <div class="total-box">
+            <span class="total-label">ยอดรวม</span>
+            <span class="total-amount" id="totalDisplay">฿0</span>
+        </div>
+        <div style="border-top:1px solid var(--border);padding-top:16px;margin-top:4px;">
+            <div id="formFields"></div>
+        </div>
+        <div id="formMsg"></div>
+        <button class="btn-primary" id="submitBtn" onclick="submitForm()">ยืนยันออเดอร์</button>
+        <button class="btn-secondary" onclick="goToPage(1)">← เปลี่ยนเกม</button>
+    </div>
+
+    <div class="page" id="page3">
+        <div class="page-title">03 — ชำระเงิน</div>
+        <div class="order-box">
+            <div class="order-label">หมายเลขออเดอร์ของคุณ</div>
+            <div class="order-number" id="displayOrderNumber">—</div>
+            <div style="margin-top:6px;font-size:12px;color:var(--muted);">กรุณาบันทึกหมายเลขนี้ไว้</div>
+        </div>
+        <div class="amount-display">
+            <span class="amount-display-label">ยอดที่ต้องโอน</span>
+            <span class="amount-display-value" id="displayTotalAmount">฿0</span>
+        </div>
+        <div style="margin-bottom:16px;">
+            <div class="payment-title">ช่องทางการชำระเงิน</div>
+            <div id="paymentList"></div>
+        </div>
+        <div style="border-top:1px solid var(--border);padding-top:16px;">
+            <div class="section-label" style="margin-bottom:10px;">อัปโหลดสลิป</div>
+            <div class="upload-zone" onclick="document.getElementById('slipFile').click()" id="uploadZone">
+                <div class="upload-icon">📎</div>
+                <div class="upload-text">แตะเพื่ออัปโหลดสลิป</div>
+                <img id="uploadPreview" class="upload-preview">
+            </div>
+            <input type="file" id="slipFile" accept="image/*" onchange="onSlipSelected(event)">
+        </div>
+        <div id="slipMsg"></div>
+        <button class="btn-primary" id="uploadBtn" onclick="uploadSlip()">ส่งสลิป</button>
+        <button class="btn-secondary" onclick="skipSlip()">ส่งสลิปทีหลัง</button>
+    </div>
+
+    <div class="modal" id="statusModal">
+        <div class="modal-box">
+            <div class="modal-title">ตรวจสอบสถานะออเดอร์</div>
+            <div class="field">
+                <label>Order Number</label>
+                <input type="text" id="statusInput" placeholder="เช่น KM-0405-0001">
+            </div>
+            <div style="text-align:center;color:var(--muted);font-size:12px;margin:-6px 0 10px;">— หรือค้นหาด้วย —</div>
+            <div class="field">
+                <label>ชื่อลูกค้า</label>
+                <input type="text" id="statusName" placeholder="ชื่อที่กรอกในฟอร์ม">
+            </div>
+            <div class="field">
+                <label>เกม</label>
+                <select id="statusGame">
+                    <option value="">ทุกเกม</option>
+                </select>
+            </div>
+            <button class="btn-primary" onclick="checkStatus()" style="margin-bottom:10px;">ค้นหา</button>
+            <button class="btn-secondary" onclick="closeStatusModal()">ปิด</button>
+            <div id="statusResult" style="margin-top:14px;"></div>
+        </div>
+    </div>
+
+    <script>
+        const SCRIPT_URL = 'https://kayaman-api.skizztv.workers.dev';
+        let DATA = {}, selectedGame = '', currentOrderNumber = '', currentTotalPrice = 0, slipFileData = null, pkgCount = 0;
+        const orderFrom = new URLSearchParams(window.location.search).get('from') || 'direct';
+
+        function fetchJSON(url) { return fetch(url).then(r => r.json()); }
+        function postJSON(url, body) { return fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).then(r => r.json()); }
+
+        fetchJSON(`${SCRIPT_URL}?action=getInitData`).then(data => { DATA = data; renderGameGrid(); }).catch(() => {
+            document.getElementById('gameGrid').innerHTML = '<div class="msg error" style="grid-column:span 4">โหลดข้อมูลไม่สำเร็จ กรุณาลองใหม่</div>';
+        });
+
+        function renderGameGrid() {
+            const games = Object.keys(DATA.packages || {});
+            const gamesData = DATA.games || {};
+            document.getElementById('gameGrid').innerHTML = games.map(game => {
+                const imgUrl = gamesData[game]?.icon || '';
+                const thumb = imgUrl ? `<img src="${imgUrl}" class="game-thumb" onerror="this.style.display='none'">` : `<div class="game-thumb-placeholder">🎮</div>`;
+                return `<div class="game-card" data-game="${game}" onclick="selectGame('${game}', this)">${thumb}<div class="game-name">${game}</div></div>`;
+            }).join('');
+            const statusGameSelect = document.getElementById('statusGame');
+            if (statusGameSelect) {
+                games.forEach(game => {
+                    const opt = document.createElement('option');
+                    opt.value = game;
+                    opt.textContent = game;
+                    statusGameSelect.appendChild(opt);
+                });
+            }
+        }
+
+        function filterGames(q) {
+            q = q.toLowerCase().trim();
+            document.querySelectorAll('.game-card').forEach(c => c.classList.toggle('hidden', q !== '' && !c.dataset.game.toLowerCase().includes(q)));
+        }
+
+        function selectGame(game, el) {
+            selectedGame = game;
+            document.querySelectorAll('.game-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            setTimeout(() => goToPage(2), 150);
+        }
+
+        function goToPage(n, isPending = false) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('page' + n).classList.add('active');
+            for (let i = 1; i <= 3; i++) {
+                const s = document.getElementById('step' + i);
+                s.className = 'step' + (i < n ? ' done' : i === n ? ' active' : '');
+            }
+            if (n === 2) renderFormPage();
+            if (n === 3) renderPaymentPage(isPending);
+            window.scrollTo(0, 0);
+        }
+
+        function renderFormPage() {
+            const fields = DATA.fields || [], options = DATA.options || {}, gamesData = DATA.games || {};
+            const gameFields = fields.filter(f => f[selectedGame] === 'Yes');
+            const imgUrl = gamesData[selectedGame]?.priceBoard || gamesData[selectedGame]?.icon || '';
+            const board = document.getElementById('priceBoard');
+            if (imgUrl) { board.innerHTML = `<img src="${imgUrl}" alt="ราคา ${selectedGame}" onerror="this.parentElement.style.display='none'">`; board.style.display = 'block'; }
+            else { board.style.display = 'none'; }
+            const skipFields = ['orderFrom', 'game'];
+            document.getElementById('formFields').innerHTML = gameFields.filter(f => !skipFields.includes(f['Field'])).map(f => {
+                const fieldId = f['Field'], label = f['Label'], required = f['Required'] === 'Yes', choices = options[label] || [];
+                if (choices.length > 0) return `<div class="field"><label>${label}${required ? ' *' : ''}</label><select id="field_${fieldId}">${choices.map(c => `<option>${c}</option>`).join('')}</select></div>`;
+                return `<div class="field"><label>${label}${required ? ' *' : ''}</label><input type="text" id="field_${fieldId}" placeholder="${label}"></div>`;
+            }).join('');
+            document.getElementById('pkgList').innerHTML = '';
+            pkgCount = 0;
+            addPkgRow();
+        }
+
+        function getPkgOptions() {
+            const pkgs = DATA.packages[selectedGame] || [];
+            const options = pkgs.map(p => `<option value="${p.price}">${p.pkg} — ฿${p.price}</option>`).join('');
+            return options + `<option value="other">อื่นๆ (ระบุรูป)</option>`;
+        }
+
+        function addPkgRow() {
+            const id = 'pkg_' + (pkgCount++);
+            const div = document.createElement('div');
+            div.className = 'pkg-row';
+            div.id = id;
+            div.innerHTML = `
+                <select class="pkg-select" onchange="onPkgChange('${id}')">${getPkgOptions()}</select>
+                <input type="number" class="pkg-qty" value="1" min="1" oninput="calcTotal()" style="text-align:center;">
+                <button class="btn-remove" onclick="removePkg('${id}')">×</button>
+              `;
+            document.getElementById('pkgList').appendChild(div);
+            calcTotal();
+        }
+
+        function onPkgChange(rowId) {
+            const row = document.getElementById(rowId);
+            const sel = row.querySelector('.pkg-select');
+            const isOther = sel.value === 'other';
+
+            // ลบ upload zone เดิมถ้ามี
+            const existing = row.querySelector('.pkg-upload');
+            if (existing) existing.remove();
+
+            if (isOther) {
+                const uploadDiv = document.createElement('div');
+                uploadDiv.className = 'pkg-upload';
+                uploadDiv.style.cssText = 'grid-column:1/-1;margin-top:6px;';
+                uploadDiv.innerHTML = `
+                  <div class="upload-zone" style="padding:16px;" onclick="document.getElementById('pkg-file-${rowId}').click()">
+                    <div style="font-size:20px;">📷</div>
+                    <div class="upload-text" id="pkg-upload-text-${rowId}">แตะเพื่ออัปโหลดรูปแพ็คเกจ</div>
+                    <img id="pkg-preview-${rowId}" style="max-height:120px;margin-top:8px;display:none;border-radius:6px;">
+                  </div>
+                  <input type="file" id="pkg-file-${rowId}" accept="image/*" onchange="onPkgImageSelected('${rowId}', event)">
+                `;
+                row.appendChild(uploadDiv);
+            }
+            calcTotal();
+        }
+
+        function onPkgImageSelected(rowId, e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = ev => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    const maxSize = 1200;
+                    let w = img.width, h = img.height;
+                    if (w > maxSize) { h = h * maxSize / w; w = maxSize; }
+                    if (h > maxSize) { w = w * maxSize / h; h = maxSize; }
+                    canvas.width = w; canvas.height = h;
+                    canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                    const compressed = canvas.toDataURL('image/jpeg', 0.8);
+
+                    const preview = document.getElementById('pkg-preview-' + rowId);
+                    preview.src = compressed;
+                    preview.style.display = 'block';
+                    document.getElementById('pkg-upload-text-' + rowId).textContent = file.name;
+
+                    if (!window.pkgImages) window.pkgImages = {};
+                    window.pkgImages[rowId] = { base64: compressed.split(',')[1], mimeType: 'image/jpeg' };
+                };
+                img.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function removePkg(id) { document.getElementById(id)?.remove(); calcTotal(); }
+
+        function calcTotal() {
+            let total = 0;
+            document.querySelectorAll('.pkg-row').forEach(row => {
+                const sel = row.querySelector('.pkg-select');
+                if (sel.value === 'other') return;
+                total += (parseFloat(sel.value) || 0) * (parseInt(row.querySelector('.pkg-qty').value) || 0);
+            });
+            currentTotalPrice = total;
+            document.getElementById('totalDisplay').textContent = '฿' + total.toLocaleString();
+        }
+
+        function getFieldVal(id) { const el = document.getElementById('field_' + id); return el ? el.value.trim() : ''; }
+
+        function submitForm() {
+            const fields = DATA.fields || [];
+            const gameFields = fields.filter(f => f[selectedGame] === 'Yes' && f['Required'] === 'Yes');
+            const skipFields = ['orderFrom', 'game'];
+
+            for (const f of gameFields) {
+                if (skipFields.includes(f['Field'])) continue;
+                const val = getFieldVal(f['Field']);
+                if (!val) {
+                    document.getElementById('formMsg').innerHTML = `<div class="msg error">กรุณากรอก ${f['Label']}</div>`;
+                    return;
+                }
+            }
+            const pkgRows = document.querySelectorAll('.pkg-row');
+            if (!pkgRows.length) { document.getElementById('formMsg').innerHTML = '<div class="msg error">กรุณาเพิ่มอย่างน้อย 1 package</div>'; return; }
+            let packageList = [], totalPrice = 0, hasOther = false;
+            pkgRows.forEach(row => {
+                const sel = row.querySelector('.pkg-select');
+                const qty = parseInt(row.querySelector('.pkg-qty').value) || 1;
+
+                if (sel.value === 'other') {
+                    hasOther = true;
+                    packageList.push(`อื่นๆ x${qty}`);
+                } else {
+                    const pkgName = sel.options[sel.selectedIndex].text.split(' — ')[0];
+                    const price = parseFloat(sel.value) || 0;
+                    packageList.push(`${pkgName} x${qty}`);
+                    totalPrice += price * qty;
+                }
+            });
+
+            const data = { orderFrom, socialName: '', customerName: getFieldVal('customerName'), customerType: getFieldVal('customerType'), game: selectedGame, platform: getFieldVal('platform'), loginForm: getFieldVal('loginForm'), emailId: getFieldVal('emailId'), pass: getFieldVal('pass'), charName: getFieldVal('charName'), level: getFieldVal('level'), server: getFieldVal('server'), uid: getFieldVal('uid'), packageSummary: packageList.join(', '), totalPrice };
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.textContent = 'กำลังบันทึก...';
+
+            postJSON(SCRIPT_URL, { action: 'submitOrder', data }).then(async res => {
+                if (res.success) {
+                    currentOrderNumber = res.orderNumber;
+                    currentTotalPrice = totalPrice;
+                    document.getElementById('displayOrderNumber').textContent = res.orderNumber;
+                    document.getElementById('displayTotalAmount').textContent = '฿' + totalPrice.toLocaleString();
+
+                    // ถ้ามี "อื่นๆ" ให้ upload รูปก่อน
+                    if (hasOther) {
+                        const images = [];
+                        document.querySelectorAll('.pkg-row').forEach(row => {
+                            const sel = row.querySelector('.pkg-select');
+                            const rowId = row.id;
+                            if (sel.value === 'other' && window.pkgImages && window.pkgImages[rowId]) {
+                                images.push(window.pkgImages[rowId]);
+                            }
+                        });
+
+                        if (images.length > 0) {
+                            console.log('images to upload:', images.length);
+                            console.log('images[0] keys:', images[0] ? Object.keys(images[0]) : 'none');
+                            console.log('pkgImages:', JSON.stringify(window.pkgImages)?.substring(0, 200));
+                            await postJSON(SCRIPT_URL, {
+                                action: 'uploadPackageImage',
+                                data: { orderNumber: res.orderNumber, images, totalPrice }
+                            });
+                        }
+                        goToPage(3, true); // true = pending review
+                    } else {
+                        goToPage(3, false);
+                    }
+                } else {
+                    document.getElementById('formMsg').innerHTML = '<div class="msg error">เกิดข้อผิดพลาด กรุณาลองใหม่</div>';
+                    btn.disabled = false;
+                    btn.textContent = 'ยืนยันออเดอร์';
+                }
+            }).catch(() => {
+                document.getElementById('formMsg').innerHTML = '<div class="msg error">เกิดข้อผิดพลาด กรุณาลองใหม่</div>';
+                btn.disabled = false;
+                btn.textContent = 'ยืนยันออเดอร์';
+            });
+        }
+
+        function renderPaymentPage(isPending = false) {
+            if (isPending) {
+                // หน้า Pending Review — รอพนักงานตรวจสอบ
+                document.getElementById('paymentList').innerHTML = '';
+                document.querySelector('#page3 .amount-display').style.display = 'none';
+                document.querySelector('#page3 [onclick="uploadSlip()"]').style.display = 'none';
+                document.querySelector('#page3 [onclick="skipSlip()"]').style.display = 'none';
+                document.querySelector('#page3 .upload-zone').parentElement.style.display = 'none';
+
+                document.getElementById('paymentList').innerHTML = `
+              <div style="text-align:center;padding:30px 0;">
+                <div class="spinner" style="margin:0 auto 16px;"></div>
+                <div style="font-size:15px;color:var(--text);margin-bottom:8px;">กำลังตรวจสอบแพ็คเกจ</div>
+                <div style="font-size:13px;color:var(--muted);">ทีมงานกำลังตรวจสอบแพ็คเกจของคุณ<br>กรุณารอสักครู่</div>
+              </div>
+              <button class="btn-secondary" onclick="startPolling()" style="margin-top:0;">รอในหน้านี้</button>
+              <button class="btn-secondary" onclick="goToCheckStatus()" style="margin-top:8px;">ออกไปก่อน แล้วค่อยเช็คสถานะ</button>
+            `;
+                startPolling();
+            } else {
+                // หน้าปกติ — แสดงช่องทางชำระเงิน
+                document.querySelector('#page3 .amount-display').style.display = '';
+                document.querySelector('#page3 [onclick="uploadSlip()"]').style.display = '';
+                document.querySelector('#page3 [onclick="skipSlip()"]').style.display = '';
+                document.querySelector('#page3 .upload-zone').parentElement.style.display = '';
+
+                const methods = DATA.paymentMethods || [];
+                const icons = { bank: '🏦', promptpay: '📱', truemoney: '💚' };
+                document.getElementById('paymentList').innerHTML = methods.map((m, i) => `
+              <div class="payment-item">
+                <div class="payment-header" onclick="togglePayment(${i})">
+                  <div class="payment-header-left">
+                    <div class="payment-icon">${icons[m.type] || '💳'}</div>
+                    <div class="payment-name">${m.name}</div>
+                  </div>
+                  <span class="payment-arrow" id="arrow-${i}">▼</span>
+                </div>
+                <div class="payment-body" id="payment-body-${i}">
+                  <div class="payment-value">${m.value}</div>
+                  <button class="btn-copy" onclick="copyText('${m.value}', this)">คัดลอก</button>
+                </div>
+              </div>`).join('');
+            }
+        }
+
+        let pollingInterval = null;
+
+        function startPolling() {
+            if (pollingInterval) clearInterval(pollingInterval);
+            pollingInterval = setInterval(async () => {
+                const res = await fetchJSON(`${SCRIPT_URL}?action=getStatus&orderNumber=${currentOrderNumber}`);
+                if (res.success && res.status !== 'Pending Review') {
+                    clearInterval(pollingInterval);
+                    if (res.status === 'Waiting for Transfer') {
+                        currentTotalPrice = Number(String(res.totalPrice).replace(/,/g, ''));
+                        document.getElementById('displayTotalAmount').textContent = '฿' + currentTotalPrice.toLocaleString();
+                        renderPaymentPage(false);
+                    }
+                }
+            }, 5000); // เช็คทุก 10 วิ
+        }
+
+        function goToCheckStatus() {
+            if (pollingInterval) clearInterval(pollingInterval);
+            openStatusModal();
+        }
+
+        function togglePayment(i) {
+            const body = document.getElementById('payment-body-' + i), arrow = document.getElementById('arrow-' + i), isOpen = body.classList.contains('open');
+            document.querySelectorAll('.payment-body').forEach(b => b.classList.remove('open'));
+            document.querySelectorAll('.payment-arrow').forEach(a => a.classList.remove('open'));
+            if (!isOpen) { body.classList.add('open'); arrow.classList.add('open'); }
+        }
+
+        function copyText(text, btn) {
+            navigator.clipboard.writeText(text).then(() => { btn.textContent = 'คัดลอกแล้ว ✓'; btn.classList.add('copied'); setTimeout(() => { btn.textContent = 'คัดลอก'; btn.classList.remove('copied'); }, 2000); });
+        }
+
+        function onSlipSelected(e) {
+            const file = e.target.files[0]; if (!file) return;
+            const reader = new FileReader();
+            reader.onload = ev => {
+                slipFileData = { base64: ev.target.result.split(',')[1], mimeType: file.type };
+                const preview = document.getElementById('uploadPreview');
+                preview.src = ev.target.result; preview.style.display = 'block';
+                document.getElementById('uploadZone').classList.add('has-file');
+                document.querySelector('#uploadZone .upload-text').textContent = file.name;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function uploadSlip() {
+            if (!slipFileData) { document.getElementById('slipMsg').innerHTML = '<div class="msg error">กรุณาเลือกรูปสลิปก่อน</div>'; return; }
+            console.log('Sending slip, size:', slipFileData.base64.length);
+            console.log('Order number:', currentOrderNumber);
+            const btn = document.getElementById('uploadBtn'); btn.disabled = true; btn.textContent = 'กำลังอัปโหลด...';
+            postJSON(SCRIPT_URL, { action: 'uploadSlip', data: { orderNumber: currentOrderNumber, fileBase64: slipFileData.base64, mimeType: slipFileData.mimeType, slipAmount: currentTotalPrice } })
+                .then(res => {
+                    if (res.success) { document.getElementById('slipMsg').innerHTML = '<div class="msg success">ส่งสลิปสำเร็จ! ทีมงานจะตรวจสอบและเติมให้เร็วที่สุด</div>'; btn.textContent = 'ส่งสำเร็จ ✓'; }
+                    else { document.getElementById('slipMsg').innerHTML = '<div class="msg error">อัปโหลดไม่สำเร็จ กรุณาลองใหม่</div>'; btn.disabled = false; btn.textContent = 'ส่งสลิป'; }
+                }).catch(() => { document.getElementById('slipMsg').innerHTML = '<div class="msg error">อัปโหลดไม่สำเร็จ กรุณาลองใหม่</div>'; btn.disabled = false; btn.textContent = 'ส่งสลิป'; });
+        }
+
+        function skipSlip() { document.getElementById('slipMsg').innerHTML = '<div class="msg success">บันทึกออเดอร์แล้ว! กรุณาส่งสลิปผ่าน Facebook/Line พร้อมแจ้งเลขออเดอร์ ' + currentOrderNumber + '</div>'; }
+
+        function openStatusModal() { document.getElementById('statusModal').classList.add('open'); }
+        function closeStatusModal() { document.getElementById('statusModal').classList.remove('open'); document.getElementById('statusResult').innerHTML = ''; document.getElementById('statusInput').value = ''; }
+
+        function checkStatus() {
+            const num = document.getElementById('statusInput').value.trim();
+            const name = document.getElementById('statusName').value.trim();
+            const game = document.getElementById('statusGame').value;
+
+            if (!num && !name) {
+                document.getElementById('statusResult').innerHTML = '<div class="msg error">กรุณากรอก Order Number หรือชื่อลูกค้า</div>';
+                return;
+            }
+
+            document.getElementById('statusResult').innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+
+            const params = new URLSearchParams({ action: 'getStatus' });
+            if (num) params.set('orderNumber', num);
+            if (name) params.set('customerName', name);
+            if (game) params.set('game', game);
+
+            fetchJSON(`${SCRIPT_URL}?${params.toString()}`)
+                .then(res => {
+                    if (res.success) {
+                        const results = Array.isArray(res.orders) ? res.orders : [res];
+                        document.getElementById('statusResult').innerHTML = results.map(r => {
+                            const sc = 'status-' + (r.status || 'Prepare').replace(/\s+/g, '');
+                            return `<div class="status-card" style="margin-bottom:8px;">
+                    <div class="status-header">
+                      <span style="font-family:'Space Mono',monospace;font-size:13px;">${r.orderNumber}</span>
+                      <span class="status-badge ${sc}">${r.status}</span>
+                    </div>
+                    <div class="status-row"><span class="status-key">เกม</span><span>${r.game}</span></div>
+                    <div class="status-row"><span class="status-key">Package</span><span>${r.package}</span></div>
+                    <div class="status-row"><span class="status-key">ยอดรวม</span><span>฿${Number(String(r.totalPrice || 0).replace(/,/g, '')).toLocaleString()}</span></div>
+                  </div>`;
+                        }).join('');
+                    } else {
+                        document.getElementById('statusResult').innerHTML = '<div class="msg error">ไม่พบออเดอร์นี้</div>';
+                    }
+                })
+                .catch(() => {
+                    document.getElementById('statusResult').innerHTML = '<div class="msg error">เกิดข้อผิดพลาด กรุณาลองใหม่</div>';
+                });
+        }
+    </script>
+</body>
+</html>
