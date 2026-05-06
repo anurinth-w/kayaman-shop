@@ -52,3 +52,4 @@ functions/node_modules/
 .DS_Store
 Thumbs.db
 admin/public/config.js
+*.Identifier
