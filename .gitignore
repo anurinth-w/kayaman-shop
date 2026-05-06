@@ -44,7 +44,7 @@ functions/node_modules/
 *.sqlite
 
 # Sensitive — ห้าม push เด็ดขาด
-*.json
+# *.json — removed, too broad
 .env
 .env.*
 
@@ -53,3 +53,5 @@ functions/node_modules/
 Thumbs.db
 admin/public/config.js
 *.Identifier
+firebase-adminsdk*.json
+service-account*.json
