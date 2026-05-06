@@ -1,0 +1,117 @@
+.banner {
+  width: 100%;
+  min-height: 460px;
+  background: #111;
+  border-bottom: 3px solid var(--red);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.banner-pattern {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.banner-overlay {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 80px;
+  gap: 40px;
+}
+.banner-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 520px;
+}
+.banner-badge {
+  display: inline-block;
+  background: var(--red);
+  color: white;
+  font-size: 12px;
+  padding: 4px 14px;
+  border-radius: 3px;
+  letter-spacing: 1px;
+  width: fit-content;
+}
+.banner-title {
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: white;
+}
+.text-red { color: var(--red); }
+.banner-sub {
+  font-size: 15px;
+  color: var(--gray);
+  line-height: 1.8;
+}
+.banner-tags {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.banner-tags span {
+  font-size: 12px;
+  color: var(--red-light);
+  background: rgba(229,62,62,0.08);
+  border: 0.5px solid rgba(229,62,62,0.3);
+  padding: 4px 12px;
+  border-radius: 3px;
+}
+.banner-btn {
+  display: inline-block;
+  background: var(--red);
+  color: white;
+  padding: 12px 32px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 500;
+  width: fit-content;
+  transition: opacity 0.2s;
+  margin-top: 4px;
+}
+.banner-btn:hover { opacity: 0.85; }
+.banner-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+}
+.banner-shield { opacity: 0.9; }
+.banner-stat {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  background: rgba(255,255,255,0.03);
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 24px;
+}
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.stat-num {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--red);
+}
+.stat-label {
+  font-size: 11px;
+  color: var(--gray);
+  letter-spacing: 0.5px;
+}
+.stat-divider {
+  width: 0.5px;
+  height: 40px;
+  background: var(--border);
+}
