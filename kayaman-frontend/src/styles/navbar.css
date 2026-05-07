@@ -1,45 +1,238 @@
+﻿/* ===== TOPBAR ===== */
 .topbar {
-  background: #1a1a1a;
-  padding: 6px 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 12px;
-  border-bottom: 0.5px solid var(--border);
+    background: #1a1a1a;
+    padding: 6px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    border-bottom: 0.5px solid var(--border);
 }
-.topbar-left, .topbar-right { display: flex; gap: 16px; align-items: center; }
-.topbar-left a { color: var(--red-light); }
-.topbar-right a { color: var(--gray); }
+
+.topbar-left, .topbar-right {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+    .topbar-left a {
+        color: var(--blue-light);
+    }
+
+    .topbar-right a {
+        color: var(--gray);
+    }
+
 .btn-login {
-  background: var(--red);
-  color: white !important;
-  padding: 3px 12px;
-  border-radius: 3px;
-  font-size: 11px;
-  font-weight: 500;
+    background: var(--red);
+    color: white !important;
+    padding: 3px 12px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 500;
 }
+
+/* ===== NAVBAR ===== */
 .navbar {
-  background: #111;
-  padding: 12px 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 3px solid var(--red);
+    background: #111;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 3px solid var(--red);
+    position: relative;
+    height: 80px;
 }
-.navbar-brand { display: flex; align-items: center; gap: 10px; }
-.brand-name { display: block; font-size: 18px; font-weight: 500; letter-spacing: 2px; color: white; }
-.brand-red { color: var(--red); }
-.brand-sub { display: block; font-size: 10px; letter-spacing: 3px; color: var(--gray-dark); }
-.navbar-links { display: flex; gap: 24px; }
-.navbar-links a { color: var(--gray); font-size: 13px; transition: color 0.2s; }
-.navbar-links a:hover { color: white; }
-.navbar-links a.active { color: var(--red); border-bottom: 2px solid var(--red); padding-bottom: 2px; }
+
+.navbar-brand {
+    position: absolute;
+    left: 70px;
+    bottom: -8px;
+    z-index: 10;
+}
+
+.navbar-logo {
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 24px;
+    margin-left: auto;
+    padding-bottom: 12px;
+}
+
+    .navbar-links a {
+        color: var(--gray);
+        font-size: 13px;
+        transition: color 0.2s;
+    }
+
+        .navbar-links a:hover {
+            color: white;
+        }
+
+        .navbar-links a.active {
+            color: var(--red);
+            border-bottom: 2px solid var(--red);
+            padding-bottom: 2px;
+        }
+
+/* ===== HAMBURGER ===== */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    margin-bottom: 0px;
+}
+
+    .hamburger span {
+        display: block;
+        width: 32px; /* กว้างขึ้น */
+        height: 5px; /* หนาขึ้น */
+        background: var(--red); /* สีแดง */
+        border-radius: 3px;
+    }
+
+/* ===== MOBILE SECONDARY BAR ===== */
+.mobile-secondary-bar {
+    display: none;
+    background: var(--red);
+    flex-direction: column;
+    padding: 0;
+}
+
+.mobile-bar-row-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-bottom: 0.5px solid rgba(255,255,255,0.2);
+    font-size: 12px;
+}
+
+.mobile-bar-row-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+    .mobile-bar-row-top a,
+    .mobile-bar-row-bottom a {
+        color: white;
+    }
+
+.mobile-bar-divider {
+    color: rgba(255,255,255,0.4);
+    font-size: 12px;
+}
+
+/* ===== MOBILE DROPDOWN ===== */
+.mobile-dropdown {
+    display: none;
+    flex-direction: column;
+    background: #1a1a1a;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+    .mobile-dropdown.open {
+        max-height: 400px;
+    }
+
+    .mobile-dropdown a {
+        color: var(--gray);
+        font-size: 16px;
+        padding: 16px 20px;
+        border-bottom: 0.5px solid var(--border);
+        display: block;
+        transition: color 0.2s, background 0.2s;
+    }
+
+        .mobile-dropdown a:hover {
+            color: white;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .mobile-dropdown a.active {
+            color: var(--red);
+        }
+
+/* ===== TICKER ===== */
 .ticker {
-  background: #0f0f0f;
-  padding: 7px 24px;
-  text-align: center;
-  font-size: 12px;
-  color: var(--gray);
-  border-bottom: 0.5px solid var(--border);
-  letter-spacing: 0.5px;
+    background: #0f0f0f;
+    padding: 7px 24px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--gray);
+    border-bottom: 0.5px solid var(--border);
+    letter-spacing: 0.5px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .topbar {
+        display: none;
+    }
+
+    .navbar {
+        position: relative; /* เปลี่ยนจาก static */
+        height: 90px; /* กำหนดความสูง */
+        padding: 0 16px;
+        align-items: center;
+        justify-content: space-between;
+        overflow: visible; /* อนุญาตให้ล้นออกได้ */
+        pointer-events: none;
+    }
+
+    .navbar-brand {
+        position: absolute; /* ลอยออกจาก flow */
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -8px; /* ล้นออกด้านล่าง ปรับตัวเลขนี้ได้ */
+        z-index: 10;
+        pointer-events: auto;
+    }
+
+    .navbar-logo {
+        height: 90px;
+    }
+
+    .hamburger {
+        pointer-events: auto;
+        margin-left: auto;
+    }
+    .navbar-links {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .mobile-secondary-bar {
+        display: flex;
+    }
+
+    .mobile-dropdown {
+        display: flex;
+    }
+
+    .ticker {
+        font-size: 11px;
+        padding: 6px 12px;
+    }
 }

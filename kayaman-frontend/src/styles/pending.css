@@ -1,0 +1,91 @@
+.pending-page {
+  padding: 24px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.pending-card {
+  background: var(--bg-card);
+  border: 0.5px solid var(--border);
+  border-radius: 12px;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+.pending-icon { font-size: 48px; }
+.pending-title { font-size: 20px; font-weight: 500; color: white; }
+.pending-sub { font-size: 13px; color: var(--gray); line-height: 1.8; }
+.pending-order {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: var(--bg-secondary);
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 32px;
+  width: 100%;
+}
+.pending-order-label { font-size: 11px; color: var(--gray); letter-spacing: 1px; }
+.pending-order-number { font-size: 20px; font-weight: 500; color: var(--red); letter-spacing: 2px; }
+.pending-status {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  justify-content: center;
+  margin: 8px 0;
+}
+.pending-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--gray-dark);
+}
+.pending-step.active { color: var(--red); }
+.pending-step.done { color: var(--gray); }
+.pending-step-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--border);
+  border: 2px solid var(--border);
+}
+.pending-step.active .pending-step-dot {
+  background: var(--red);
+  border-color: var(--red);
+}
+.pending-step.done .pending-step-dot {
+  background: var(--gray);
+  border-color: var(--gray);
+}
+.pending-step-line {
+  width: 40px;
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 18px;
+}
+.pending-btn {
+  background: var(--red);
+  color: white;
+  padding: 12px 32px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  width: 100%;
+  text-align: center;
+  transition: opacity 0.2s;
+}
+.pending-btn:hover { opacity: 0.85; }
+.pending-checking { font-size: 12px; color: var(--gray); }
+.pending-track {
+  font-size: 12px;
+  color: var(--gray);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.pending-track:hover { color: var(--red); }

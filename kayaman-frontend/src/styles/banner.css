@@ -1,117 +1,234 @@
 .banner {
-  width: 100%;
-  min-height: 460px;
-  background: #111;
-  border-bottom: 3px solid var(--red);
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
+    width: 100%;
+    height: 460px;
+    background: #111;
+    border-bottom: 3px solid var(--red);
+    position: relative;
+    overflow: hidden;
+    display: flex;
 }
+
+.slide-hidden {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.banner-left {
+    position: relative;
+    width: 30%;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+    clip-path: polygon(0 0, 90% 0, 75% 100%, 0 100%);
+    background: #111;
+}
+
 .banner-pattern {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
 }
-.banner-overlay {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 60px 80px;
-  gap: 40px;
-}
+
 .banner-content {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  max-width: 520px;
+    padding: 48px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 480px;
+    position: relative;
+    z-index: 1;
 }
+
 .banner-badge {
-  display: inline-block;
-  background: var(--red);
-  color: white;
-  font-size: 12px;
-  padding: 4px 14px;
-  border-radius: 3px;
-  letter-spacing: 1px;
-  width: fit-content;
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    font-size: 12px;
+    padding: 4px 14px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    width: fit-content;
 }
+
 .banner-title {
-  font-size: 48px;
-  font-weight: 500;
-  line-height: 1.2;
-  color: white;
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: white;
 }
-.text-red { color: var(--red); }
+
+.text-red {
+    color: var(--red);
+}
+
 .banner-sub {
-  font-size: 15px;
-  color: var(--gray);
-  line-height: 1.8;
+    font-size: 15px;
+    color: var(--gray);
+    line-height: 1.8;
 }
+
 .banner-tags {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
 }
-.banner-tags span {
-  font-size: 12px;
-  color: var(--red-light);
-  background: rgba(229,62,62,0.08);
-  border: 0.5px solid rgba(229,62,62,0.3);
-  padding: 4px 12px;
-  border-radius: 3px;
-}
+
+    .banner-tags span {
+        font-size: 12px;
+        color: var(--red-light);
+        background: rgba(229,62,62,0.08);
+        border: 0.5px solid rgba(229,62,62,0.3);
+        padding: 4px 12px;
+        border-radius: 3px;
+    }
+
 .banner-btn {
-  display: inline-block;
-  background: var(--red);
-  color: white;
-  padding: 12px 32px;
-  border-radius: 4px;
-  font-size: 15px;
-  font-weight: 500;
-  width: fit-content;
-  transition: opacity 0.2s;
-  margin-top: 4px;
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    padding: 12px 32px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 500;
+    width: fit-content;
+    transition: opacity 0.2s;
+    margin-top: 4px;
 }
-.banner-btn:hover { opacity: 0.85; }
+
+    .banner-btn:hover {
+        opacity: 0.85;
+    }
+
 .banner-right {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-  flex-shrink: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 80%;
+    height: 100%;
+    z-index: 1;
 }
-.banner-shield { opacity: 0.9; }
-.banner-stat {
-  display: flex;
-  gap: 24px;
-  align-items: center;
-  background: rgba(255,255,255,0.03);
-  border: 0.5px solid var(--border);
-  border-radius: 8px;
-  padding: 12px 24px;
+
+.banner-slideshow {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
-.stat-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
+
+.banner-slides {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+    transform: translateX(0);
+    opacity: 1;
 }
-.stat-num {
-  font-size: 22px;
-  font-weight: 500;
-  color: var(--red);
+
+.banner-fade-overlay {
+    position: absolute;
+    inset: 0;
+    background: #111111;
+    z-index: 3;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
 }
-.stat-label {
-  font-size: 11px;
-  color: var(--gray);
-  letter-spacing: 0.5px;
+
+    .banner-fade-overlay.active {
+        opacity: 1;
+    }
+
+.banner-slides.sliding-right {
+    transform: translateX(-100%);
+    opacity: 0;
 }
-.stat-divider {
-  width: 0.5px;
-  height: 40px;
-  background: var(--border);
+
+.banner-slides.sliding-left {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+.banner-slide-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.banner-dots {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 3;
+}
+
+.banner-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    padding: 0;
+}
+
+    .banner-dot.active {
+        background: var(--red);
+        width: 28px;
+        border-radius: 5px;
+    }
+
+    .banner-dot:hover {
+        background: rgba(255,255,255,0.7);
+    }
+
+.banner-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .banner {
+    height: 240px;
+  }
+  .banner-left {
+    display: none;
+  }
+  .banner-right {
+    position: static;
+    width: 100%;
+    height: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .banner-right {
+    position: relative;
+    z-index: 10;
+    touch-action: pan-y pinch-zoom;
+  }
+  .banner-slideshow {
+    touch-action: pan-y pinch-zoom;
+  }
+}
+
+@media (max-width: 768px) {
+  .banner-right {
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+  }
+  .banner-slideshow {
+    touch-action: pan-y;
+  }
 }
