@@ -24,630 +24,206 @@
             --info: #4488ff
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0
-        }
-
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: sans-serif;
-            font-size: 14px;
-            min-height: 100vh
-        }
-
-        .login-page {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px
-        }
-
-        .login-box {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 40px;
-            width: 100%;
-            max-width: 380px;
-            text-align: center
-        }
-
-        .login-logo {
-            font-size: 20px;
-            font-weight: 700;
-            letter-spacing: 4px;
-            margin-bottom: 8px
-        }
-
-        .login-sub {
-            font-size: 12px;
-            color: var(--muted);
-            letter-spacing: 2px;
-            margin-bottom: 32px
-        }
-
-        .btn-google {
-            width: 100%;
-            background: #fff;
-            color: #333;
-            border: none;
-            border-radius: 8px;
-            padding: 12px;
-            font-size: 14px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px
-        }
-
-        .btn-google img {
-            width: 20px;
-            height: 20px
-        }
-
-        .header {
-            background: var(--surface);
-            border-bottom: 1px solid var(--border);
-            padding: 12px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 100
-        }
-
-        .header-logo {
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 3px
-        }
-
-        .header-logo span {
-            color: var(--warning)
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 12px
-        }
-
-        .staff-name {
-            font-size: 12px;
-            color: var(--muted)
-        }
-
-        .role-badge {
-            font-size: 10px;
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-weight: 500
-        }
-
-        .role-super_admin {
-            background: #2a1a00;
-            color: var(--warning);
-            border: 1px solid var(--warning)
-        }
-
-        .role-admin {
-            background: #001a2a;
-            color: var(--info);
-            border: 1px solid var(--info)
-        }
-
-        .role-staff {
-            background: #1a2a00;
-            color: var(--success);
-            border: 1px solid var(--success)
-        }
-
-        .role-agent {
-            background: #2a002a;
-            color: #cc88ff;
-            border: 1px solid #cc88ff
-        }
-
-        .btn-logout {
-            font-size: 12px;
-            color: var(--muted);
-            background: none;
-            border: 1px solid var(--border);
-            padding: 5px 10px;
-            border-radius: 6px;
-            cursor: pointer
-        }
-
-        .tabs {
-            display: flex;
-            gap: 4px;
-            padding: 12px 20px;
-            background: var(--surface);
-            border-bottom: 1px solid var(--border);
-            overflow-x: auto
-        }
-
-        .tab {
-            font-size: 12px;
-            padding: 6px 14px;
-            border-radius: 6px;
-            cursor: pointer;
-            border: 1px solid transparent;
-            color: var(--muted);
-            white-space: nowrap
-        }
-
-        .tab.active {
-            background: var(--surface2);
-            border-color: var(--border);
-            color: var(--text)
-        }
-
-        .tab-badge {
-            display: inline-block;
-            background: var(--danger);
-            color: #fff;
-            font-size: 10px;
-            padding: 1px 5px;
-            border-radius: 10px;
-            margin-left: 5px
-        }
-
-        .content {
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto
-        }
-
-        .order-grid {
-            display: grid;
-            gap: 12px
-        }
-
-        .order-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            overflow: hidden
-        }
-
-        .order-card:hover {
-            border-color: var(--accent)
-        }
-
-        .order-header {
-            padding: 12px 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border);
-            cursor: pointer
-        }
-
-        .order-header-left {
-            display: flex;
-            align-items: center;
-            gap: 12px
-        }
-
-        .order-number {
-            font-family: monospace;
-            font-size: 13px;
-            font-weight: 700
-        }
-
-        .order-meta {
-            font-size: 12px;
-            color: var(--muted)
-        }
-
-        .status-badge {
-            font-size: 11px;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-weight: 500;
-            white-space: nowrap
-        }
-
-        .status-Pending-Review {
-            background: #2a1a00;
-            color: var(--warning);
-            border: 1px solid var(--warning)
-        }
-
-        .status-Slip-Uploaded {
-            background: #001a2a;
-            color: var(--info);
-            border: 1px solid var(--info)
-        }
-
-        .status-Error {
-            background: #2a0000;
-            color: var(--danger);
-            border: 1px solid var(--danger)
-        }
-
-        .status-Need-Info {
-            background: #2a002a;
-            color: #cc88ff;
-            border: 1px solid #cc88ff
-        }
-
-        .status-Waiting-for-Transfer {
-            background: #002a1a;
-            color: var(--success);
-            border: 1px solid var(--success)
-        }
-
-        .status-Processing {
-            background: #001a2a;
-            color: var(--info);
-            border: 1px solid var(--info)
-        }
-
-        .status-Assigned {
-            background: #1a2a00;
-            color: var(--success);
-            border: 1px solid var(--success)
-        }
-
-        .status-In-Progress {
-            background: #1a1000;
-            color: #ffcc44;
-            border: 1px solid #ffcc44
-        }
-
-        .order-body {
-            display: none;
-            padding: 16px
-        }
-
-        .order-body.open {
-            display: block
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 10px;
-            margin-bottom: 14px
-        }
-
-        .info-item label {
-            font-size: 10px;
-            letter-spacing: 1px;
-            color: var(--muted);
-            text-transform: uppercase;
-            display: block;
-            margin-bottom: 3px
-        }
-
-        .info-item span {
-            font-size: 13px
-        }
-
-        .sensitive {
-            color: var(--warning)
-        }
-
-        .img-row {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 14px;
-            flex-wrap: wrap
-        }
-
-        .img-thumb {
-            width: 120px;
-            height: 120px;
-            object-fit: contain;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            background: var(--surface2);
-            cursor: pointer
-        }
-
-        .img-label {
-            font-size: 11px;
-            color: var(--muted);
-            text-align: center;
-            margin-top: 4px
-        }
-
-        .action-row {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap
-        }
-
-        .btn-confirm {
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: 500;
-            cursor: pointer;
-            border: none
-        }
-
-        .btn-confirm-price {
-            background: var(--warning);
-            color: #000
-        }
-
-        .btn-confirm-slip {
-            background: var(--success);
-            color: #000
-        }
-
-        .btn-request-info {
-            background: var(--surface2);
-            color: var(--text);
-            border: 1px solid var(--border)
-        }
-
-        .btn-assign {
-            background: var(--info);
-            color: #fff
-        }
-
-        .btn-accept {
-            background: #ffcc44;
-            color: #000
-        }
-
-        .btn-complete {
-            background: var(--success);
-            color: #000
-        }
-
-        .btn-confirm:disabled {
-            opacity: .4;
-            cursor: not-allowed
-        }
-
-        .loading {
-            text-align: center;
-            padding: 60px 20px;
-            color: var(--muted)
-        }
-
-        .spinner {
-            width: 24px;
-            height: 24px;
-            border: 2px solid var(--border);
-            border-top-color: var(--accent);
-            border-radius: 50%;
-            animation: spin .8s linear infinite;
-            margin: 0 auto 12px
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg)
-            }
-        }
-
-        .empty {
-            text-align: center;
-            padding: 60px 20px;
-            color: var(--muted);
-            font-size: 13px
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, .9);
-            z-index: 200;
-            align-items: center;
-            justify-content: center;
-            padding: 20px
-        }
-
-        .modal.open {
-            display: flex
-        }
-
-        .modal-box {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 24px;
-            width: 100%;
-            max-width: 440px;
-            max-height: 90vh;
-            overflow-y: auto
-        }
-
-        .modal-title {
-            font-size: 13px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            color: var(--highlight)
-        }
-
-        .modal-slip {
-            width: 100%;
-            max-height: 300px;
-            object-fit: contain;
-            border-radius: 8px;
-            margin-bottom: 16px;
-            background: var(--surface2)
-        }
-
-        .field {
-            margin-bottom: 14px
-        }
-
-        .field label {
-            display: block;
-            font-size: 11px;
-            letter-spacing: 1px;
-            color: var(--muted);
-            margin-bottom: 5px;
-            text-transform: uppercase
-        }
-
-        .field input,
-        .field select {
-            width: 100%;
-            background: var(--surface2);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 10px 12px;
-            color: var(--text);
-            font-size: 14px;
-            outline: none
-        }
-
-        .modal-price-display {
-            background: var(--surface2);
-            border-radius: 8px;
-            padding: 12px 16px;
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 14px
-        }
-
-        .modal-price-label {
-            font-size: 12px;
-            color: var(--muted)
-        }
-
-        .modal-price-value {
-            font-family: monospace;
-            font-size: 16px;
-            color: var(--highlight)
-        }
-
-        .modal-footer {
-            display: flex;
-            gap: 8px;
-            margin-top: 16px
-        }
-
-        .btn-primary {
-            flex: 1;
-            background: var(--highlight);
-            color: #111;
-            border: none;
-            border-radius: 8px;
-            padding: 12px;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer
-        }
-
-        .btn-primary:disabled {
-            opacity: .4;
-            cursor: not-allowed
-        }
-
-        .btn-cancel {
-            flex: 1;
-            background: none;
-            color: var(--muted);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 12px;
-            font-size: 13px;
-            cursor: pointer
-        }
-
-        .lightbox {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, .95);
-            z-index: 300;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer
-        }
-
-        .lightbox.open {
-            display: flex
-        }
-
-        .lightbox img {
-            max-width: 90vw;
-            max-height: 90vh;
-            object-fit: contain;
-            border-radius: 8px
-        }
-
-        .msg {
-            padding: 10px 14px;
-            border-radius: 8px;
-            font-size: 13px;
-            margin: 8px 0;
-            text-align: center
-        }
-
-        .msg.error {
-            background: #2a0000;
-            color: var(--danger)
-        }
-
-        .msg.success {
-            background: #002a1a;
-            color: var(--success)
-        }
-
-        .info-type-btns {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-bottom: 14px
-        }
-
-        .info-type-btn {
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            background: var(--surface2);
-            color: var(--text);
-            cursor: pointer;
-            font-size: 13px;
-            text-align: center
-        }
-
-        .info-type-btn.selected {
-            border-color: var(--info);
-            background: #001a2a;
-            color: var(--info)
-        }
-
-        .agent-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 14px;
-            max-height: 200px;
-            overflow-y: auto
-        }
-
-        .agent-item {
-            padding: 10px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            background: var(--surface2);
-            cursor: pointer;
-            font-size: 13px
-        }
-
-        .agent-item.selected {
-            border-color: var(--success);
-            background: #002a1a;
-            color: var(--success)
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0 }
+
+        body { background: var(--bg); color: var(--text); font-family: sans-serif; font-size: 14px; min-height: 100vh }
+
+        .login-page { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px }
+
+        .login-box { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 40px; width: 100%; max-width: 380px; text-align: center }
+
+        .login-logo { font-size: 20px; font-weight: 700; letter-spacing: 4px; margin-bottom: 8px }
+
+        .login-sub { font-size: 12px; color: var(--muted); letter-spacing: 2px; margin-bottom: 32px }
+
+        .btn-google { width: 100%; background: #fff; color: #333; border: none; border-radius: 8px; padding: 12px; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px }
+
+        .btn-google img { width: 20px; height: 20px }
+
+        .header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100 }
+
+        .header-logo { font-size: 13px; font-weight: 700; letter-spacing: 3px }
+
+        .header-logo span { color: var(--warning) }
+
+        .header-right { display: flex; align-items: center; gap: 12px }
+
+        .staff-name { font-size: 12px; color: var(--muted) }
+
+        .role-badge { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 500 }
+
+        .role-super_admin { background: #2a1a00; color: var(--warning); border: 1px solid var(--warning) }
+
+        .role-admin { background: #001a2a; color: var(--info); border: 1px solid var(--info) }
+
+        .role-staff { background: #1a2a00; color: var(--success); border: 1px solid var(--success) }
+
+        .role-agent { background: #2a002a; color: #cc88ff; border: 1px solid #cc88ff }
+
+        .btn-logout { font-size: 12px; color: var(--muted); background: none; border: 1px solid var(--border); padding: 5px 10px; border-radius: 6px; cursor: pointer }
+
+        .tabs { display: flex; gap: 4px; padding: 12px 20px; background: var(--surface); border-bottom: 1px solid var(--border); overflow-x: auto }
+
+        .tab { font-size: 12px; padding: 6px 14px; border-radius: 6px; cursor: pointer; border: 1px solid transparent; color: var(--muted); white-space: nowrap }
+
+        .tab.active { background: var(--surface2); border-color: var(--border); color: var(--text) }
+
+        .tab-badge { display: inline-block; background: var(--danger); color: #fff; font-size: 10px; padding: 1px 5px; border-radius: 10px; margin-left: 5px }
+
+        .content { padding: 20px; max-width: 1200px; margin: 0 auto }
+
+        .order-grid { display: grid; gap: 12px }
+
+        .order-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; cursor: pointer }
+
+        .order-card:hover { border-color: var(--accent) }
+
+        .order-header { padding: 12px 16px; display: flex; justify-content: space-between; align-items: center }
+
+        .order-header-left { display: flex; align-items: center; gap: 12px }
+
+        .order-number { font-family: monospace; font-size: 13px; font-weight: 700 }
+
+        .order-meta { font-size: 12px; color: var(--muted) }
+
+        .status-badge { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 500; white-space: nowrap }
+
+        .status-Pending-Review { background: #2a1a00; color: var(--warning); border: 1px solid var(--warning) }
+        .status-Slip-Uploaded { background: #001a2a; color: var(--info); border: 1px solid var(--info) }
+        .status-Error { background: #2a0000; color: var(--danger); border: 1px solid var(--danger) }
+        .status-Need-Info { background: #2a002a; color: #cc88ff; border: 1px solid #cc88ff }
+        .status-Waiting-for-Transfer { background: #002a1a; color: var(--success); border: 1px solid var(--success) }
+        .status-Processing { background: #001a2a; color: var(--info); border: 1px solid var(--info) }
+        .status-Assigned { background: #1a2a00; color: var(--success); border: 1px solid var(--success) }
+        .status-In-Progress { background: #1a1000; color: #ffcc44; border: 1px solid #ffcc44 }
+
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-bottom: 14px }
+
+        .info-item label { font-size: 10px; letter-spacing: 1px; color: var(--muted); text-transform: uppercase; display: block; margin-bottom: 3px }
+
+        .info-item span { font-size: 13px }
+
+        .sensitive { color: var(--warning) }
+
+        .img-row { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap }
+
+        .img-thumb { width: 120px; height: 120px; object-fit: contain; border-radius: 8px; border: 1px solid var(--border); background: var(--surface2); cursor: pointer }
+
+        .img-label { font-size: 11px; color: var(--muted); text-align: center; margin-top: 4px }
+
+        .action-row { display: flex; gap: 8px; flex-wrap: wrap }
+
+        .btn-confirm { padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 500; cursor: pointer; border: none }
+
+        .btn-confirm-price { background: var(--warning); color: #000 }
+        .btn-confirm-slip { background: var(--success); color: #000 }
+        .btn-request-info { background: var(--surface2); color: var(--text); border: 1px solid var(--border) !important }
+        .btn-assign { background: var(--info); color: #fff }
+        .btn-accept { background: #ffcc44; color: #000 }
+        .btn-complete { background: var(--success); color: #000 }
+
+        .btn-confirm:disabled { opacity: .4; cursor: not-allowed }
+
+        .loading { text-align: center; padding: 60px 20px; color: var(--muted) }
+
+        .spinner { width: 24px; height: 24px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin .8s linear infinite; margin: 0 auto 12px }
+
+        @keyframes spin { to { transform: rotate(360deg) } }
+
+        .empty { text-align: center; padding: 60px 20px; color: var(--muted); font-size: 13px }
+
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.9); z-index: 200; align-items: center; justify-content: center; padding: 20px }
+
+        .modal.open { display: flex }
+
+        .modal-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; width: 100%; max-width: 440px; max-height: 90vh; overflow-y: auto }
+
+        .modal-title { font-size: 13px; font-weight: 700; margin-bottom: 16px; color: var(--highlight) }
+
+        .modal-slip { width: 100%; max-height: 300px; object-fit: contain; border-radius: 8px; margin-bottom: 16px; background: var(--surface2) }
+
+        .field { margin-bottom: 14px }
+
+        .field label { display: block; font-size: 11px; letter-spacing: 1px; color: var(--muted); margin-bottom: 5px; text-transform: uppercase }
+
+        .field input, .field select { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; color: var(--text); font-size: 14px; outline: none }
+
+        .modal-price-display { background: var(--surface2); border-radius: 8px; padding: 12px 16px; display: flex; justify-content: space-between; margin-bottom: 14px }
+
+        .modal-price-label { font-size: 12px; color: var(--muted) }
+
+        .modal-price-value { font-family: monospace; font-size: 16px; color: var(--highlight) }
+
+        .modal-footer { display: flex; gap: 8px; margin-top: 16px }
+
+        .btn-primary { flex: 1; background: var(--highlight); color: #111; border: none; border-radius: 8px; padding: 12px; font-size: 12px; font-weight: 700; cursor: pointer }
+
+        .btn-primary:disabled { opacity: .4; cursor: not-allowed }
+
+        .btn-cancel { flex: 1; background: none; color: var(--muted); border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-size: 13px; cursor: pointer }
+
+        .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.95); z-index: 300; align-items: center; justify-content: center; cursor: pointer }
+
+        .lightbox.open { display: flex }
+
+        .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 8px }
+
+        .msg { padding: 10px 14px; border-radius: 8px; font-size: 13px; margin: 8px 0; text-align: center }
+
+        .msg.error { background: #2a0000; color: var(--danger) }
+
+        .msg.success { background: #002a1a; color: var(--success) }
+
+        .agent-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; max-height: 200px; overflow-y: auto }
+
+        .agent-item { padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface2); cursor: pointer; font-size: 13px }
+
+        .agent-item.selected { border-color: var(--success); background: #002a1a; color: var(--success) }
+
+        /* ── Toast Notification ── */
+        .toast-container { position: fixed; top: 70px; right: 16px; z-index: 500; display: flex; flex-direction: column; gap: 8px; pointer-events: none }
+
+        .toast { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; font-size: 13px; min-width: 260px; max-width: 340px; animation: toastIn .3s ease; pointer-events: auto; line-height: 1.5 }
+
+        .toast.new-order { border-color: var(--warning); background: #1a1200 }
+
+        @keyframes toastIn { from { transform: translateX(120%); opacity: 0 } to { transform: translateX(0); opacity: 1 } }
+
+        /* ── Copy Button ── */
+        .btn-copy { background: none; border: 1px solid var(--border); border-radius: 4px; color: var(--muted); padding: 1px 7px; font-size: 10px; cursor: pointer; margin-left: 6px; vertical-align: middle; transition: border-color .1s, color .1s }
+
+        .btn-copy:hover { border-color: var(--accent); color: var(--text) }
+
+        .btn-copy.copied { border-color: var(--success); color: var(--success) }
+
+        /* ── Order Detail Overlay ── */
+        .order-detail-overlay { display: none; position: fixed; inset: 0; background: var(--bg); z-index: 150; overflow-y: auto }
+
+        .order-detail-overlay.open { display: block }
+
+        .order-detail-top { position: sticky; top: 0; background: var(--surface); border-bottom: 1px solid var(--border); padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; z-index: 10 }
+
+        .order-detail-content { max-width: 800px; margin: 0 auto; padding: 24px 20px }
+
+        /* ── Info Type Checkboxes ── */
+        .info-type-checks { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px }
+
+        .info-type-check-item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface2); cursor: pointer; font-size: 13px; user-select: none }
+
+        .info-type-check-item input[type="checkbox"] { accent-color: var(--info); width: 16px; height: 16px; cursor: pointer; flex-shrink: 0 }
+
+        .info-type-check-item.checked { border-color: var(--info); background: #001a2a; color: var(--info) }
+
+        /* ── Request / Error Log ── */
+        .order-log { margin-top: 16px; margin-bottom: 4px }
+        .order-log-title { font-size: 10px; letter-spacing: 1px; color: var(--muted); text-transform: uppercase; margin-bottom: 8px }
+        .log-entry { font-size: 12px; color: var(--muted); padding: 6px 10px; border-left: 2px solid var(--border); margin-bottom: 6px; line-height: 1.5 }
+        .log-entry.error-entry { border-color: var(--danger); color: #ff8888 }
+
+        /* ── Error Resolve Modal ── */
+        .resolve-option { display: flex; align-items: center; gap: 10px; padding: 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface2); cursor: pointer; font-size: 13px; margin-bottom: 8px; user-select: none }
+        .resolve-option input[type="radio"] { accent-color: var(--danger); width: 16px; height: 16px; cursor: pointer; flex-shrink: 0 }
+        .resolve-option.selected { border-color: var(--danger); background: #2a0000; color: #ff8888 }
     </style>
 </head>
 
@@ -670,27 +246,19 @@
             <div class="header-right">
                 <span class="staff-name" id="staffName"></span>
                 <span class="role-badge" id="roleBadge"></span>
-                <a id="historyLink" href="history.html"
-                    style="display:none;font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:5px 10px;border-radius:6px;">📋
-                    ประวัติ</a>
+                <a id="historyLink" href="history.html" style="display:none;font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:5px 10px;border-radius:6px;">📋 ประวัติ</a>
                 <button class="btn-logout" onclick="logout()">ออกจากระบบ</button>
             </div>
         </div>
         <div class="tabs" id="tabsContainer"></div>
-        <div id="bulkBar"
-            style="display:none;background:#1e2028;border-bottom:1px solid #2a2d36;padding:10px 20px;align-items:center;gap:12px;">
+        <div id="bulkBar" style="display:none;background:#1e2028;border-bottom:1px solid #2a2d36;padding:10px 20px;align-items:center;gap:12px;">
             <span id="bulkCount" style="font-size:13px;color:#e8e8e8;">เลือก 0 ออเดอร์</span>
-            <button onclick="openBulkAssignModal()"
-                style="background:#4488ff;color:#fff;border:none;padding:8px 16px;border-radius:8px;cursor:pointer;font-size:13px;">มอบหมายทั้งหมด
-                🎯</button>
-            <button onclick="clearSelection()"
-                style="background:none;color:#666;border:1px solid #2a2d36;padding:8px 16px;border-radius:8px;cursor:pointer;font-size:13px;">ยกเลิก</button>
+            <button onclick="openBulkAssignModal()" style="background:#4488ff;color:#fff;border:none;padding:8px 16px;border-radius:8px;cursor:pointer;font-size:13px;">มอบหมายทั้งหมด 🎯</button>
+            <button onclick="clearSelection()" style="background:none;color:#666;border:1px solid #2a2d36;padding:8px 16px;border-radius:8px;cursor:pointer;font-size:13px;">ยกเลิก</button>
         </div>
         <div class="content">
             <div id="orderList" class="order-grid">
-                <div class="loading">
-                    <div class="spinner"></div>กำลังโหลด...
-                </div>
+                <div class="loading"><div class="spinner"></div>กำลังโหลด...</div>
             </div>
         </div>
     </div>
@@ -701,14 +269,11 @@
             <div class="modal-title">กำหนดราคาแพ็คเกจ 💰</div>
             <div id="priceModalImages" class="img-row"></div>
             <div id="priceOrderInfo" style="margin-bottom:14px;font-size:13px;color:var(--muted);"></div>
-            <div class="field"><label>ราคาที่ต้องชำระ (บาท)</label><input type="number" id="priceInput"
-                    placeholder="กรอกราคา"></div>
+            <div class="field"><label>ราคาที่ต้องชำระ (บาท)</label><input type="number" id="priceInput" placeholder="กรอกราคา"></div>
             <div id="priceMsg"></div>
-            <div id="priceTotalDisplay"
-                style="display:none;background:var(--surface2);border-radius:8px;padding:12px 16px;justify-content:space-between;align-items:center;margin-bottom:14px;">
+            <div id="priceTotalDisplay" style="display:none;background:var(--surface2);border-radius:8px;padding:12px 16px;justify-content:space-between;align-items:center;margin-bottom:14px;">
                 <span style="font-size:12px;color:var(--muted);">ราคารวมทั้งหมด</span>
-                <span id="priceTotalValue"
-                    style="font-family:monospace;font-size:18px;color:var(--highlight);">฿0</span>
+                <span id="priceTotalValue" style="font-family:monospace;font-size:18px;color:var(--highlight);">฿0</span>
             </div>
             <div class="modal-footer">
                 <button class="btn-cancel" onclick="closePriceModal()">ยกเลิก</button>
@@ -726,8 +291,7 @@
                 <span class="modal-price-label">ยอดที่ต้องโอน</span>
                 <span class="modal-price-value" id="slipExpectedPrice">฿0</span>
             </div>
-            <div class="field"><label>ยอดในสลิป (บาท)</label><input type="number" id="slipAmountInput"
-                    placeholder="กรอกยอดในสลิป"></div>
+            <div class="field"><label>ยอดในสลิป (บาท)</label><input type="number" id="slipAmountInput" placeholder="กรอกยอดในสลิป"></div>
             <div id="slipMsg"></div>
             <div class="modal-footer">
                 <button class="btn-cancel" onclick="closeSlipModal()">ยกเลิก</button>
@@ -741,11 +305,19 @@
         <div class="modal-box">
             <div class="modal-title">ขอข้อมูลเพิ่มเติมจากลูกค้า 📋</div>
             <div id="requestOrderInfo" style="margin-bottom:14px;font-size:13px;color:var(--muted);"></div>
-            <div class="info-type-btns">
-                <div class="info-type-btn" onclick="selectInfoType('Password')">🔑 Password</div>
-                <div class="info-type-btn" onclick="selectInfoType('Email')">📧 Email</div>
-                <div class="info-type-btn" onclick="selectInfoType('UID')">🆔 UID</div>
-                <div class="info-type-btn" onclick="selectInfoType('OTP')">📱 OTP</div>
+            <div class="info-type-checks">
+                <label class="info-type-check-item" onclick="toggleCheckItem(this)">
+                    <input type="checkbox" value="Password"> 🔑 Password
+                </label>
+                <label class="info-type-check-item" onclick="toggleCheckItem(this)">
+                    <input type="checkbox" value="Email"> 📧 Email / ID
+                </label>
+                <label class="info-type-check-item" onclick="toggleCheckItem(this)">
+                    <input type="checkbox" value="UID"> 🆔 UID
+                </label>
+                <label class="info-type-check-item" onclick="toggleCheckItem(this)">
+                    <input type="checkbox" value="OTP"> 📱 OTP
+                </label>
             </div>
             <div id="requestMsg"></div>
             <div class="modal-footer">
@@ -770,13 +342,98 @@
         </div>
     </div>
 
+    <!-- Upload Slip by Staff Modal -->
+    <div class="modal" id="uploadSlipModal">
+        <div class="modal-box">
+            <div class="modal-title">อัปโหลดสลิปแทนลูกค้า 📤</div>
+            <div id="uploadSlipOrderInfo" style="margin-bottom:14px;font-size:13px;color:var(--muted);"></div>
+            <div class="field">
+                <label>เลือกไฟล์สลิป</label>
+                <input type="file" id="uploadSlipFile" accept="image/*" style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-size:13px;outline:none;" onchange="previewUploadSlip(this)">
+            </div>
+            <div id="uploadSlipPreview" style="margin-bottom:12px;"></div>
+            <div id="uploadSlipMsg"></div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeUploadSlipModal()">ยกเลิก</button>
+                <button class="btn-primary" id="confirmUploadSlipBtn" onclick="submitStaffUploadSlip()">อัปโหลด ✅</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Info Modal -->
+    <div class="modal" id="editInfoModal">
+        <div class="modal-box">
+            <div class="modal-title">แก้ไขข้อมูลลูกค้า ✏️</div>
+            <div id="editInfoOrderInfo" style="margin-bottom:14px;font-size:13px;color:var(--muted);"></div>
+            <div class="field"><label>Email / ID</label><input type="text" id="editEmailId" placeholder="ไม่เปลี่ยนถ้าเว้นว่าง"></div>
+            <div class="field"><label>Password</label><input type="text" id="editPassword" placeholder="ไม่เปลี่ยนถ้าเว้นว่าง"></div>
+            <div class="field"><label>UID</label><input type="text" id="editUid" placeholder="ไม่เปลี่ยนถ้าเว้นว่าง"></div>
+            <div id="editInfoMsg"></div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeEditInfoModal()">ยกเลิก</button>
+                <button class="btn-primary" id="confirmEditInfoBtn" onclick="submitEditInfo()">บันทึก ✅</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Resolve Modal -->
+    <div class="modal" id="errorResolveModal">
+        <div class="modal-box">
+            <div class="modal-title">จัดการ Error 🛠️</div>
+            <div id="errorResolveOrderInfo" style="margin-bottom:14px;font-size:13px;color:var(--muted);"></div>
+            <div id="errorResolveOptions">
+                <label class="resolve-option" onclick="selectResolveOption('revert', this)">
+                    <input type="radio" name="resolveType" value="revert"> 🔄 เปลี่ยน status กลับเป็น Slip Uploaded
+                </label>
+                <label class="resolve-option" onclick="selectResolveOption('manual', this)">
+                    <input type="radio" name="resolveType" value="manual"> ✏️ กรอกยอดเองแทน verify
+                </label>
+                <label class="resolve-option" onclick="selectResolveOption('delete', this)">
+                    <input type="radio" name="resolveType" value="delete"> 🗑️ เปลี่ยน status เป็น Deleted
+                </label>
+                <label class="resolve-option" onclick="selectResolveOption('note', this)">
+                    <input type="radio" name="resolveType" value="note"> 📝 อื่นๆ (กรอกหมายเหตุเอง)
+                </label>
+            </div>
+            <div id="errorResolveManualInput" style="display:none;margin-top:8px;">
+                <div class="field"><label>ยอดที่ต้องการบันทึก (บาท)</label><input type="number" id="errorManualAmount" placeholder="กรอกยอด"></div>
+            </div>
+            <div id="errorResolveNoteInput" style="display:none;margin-top:8px;">
+                <div class="field"><label>หมายเหตุ</label><input type="text" id="errorNoteText" placeholder="กรอกหมายเหตุ"></div>
+            </div>
+            <div id="errorResolveMsg"></div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeErrorResolveModal()">ยกเลิก</button>
+                <button class="btn-primary" id="confirmErrorResolveBtn" onclick="submitErrorResolve()" style="background:var(--danger);color:#fff;">ยืนยัน ✅</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Order Detail Overlay -->
+    <div class="order-detail-overlay" id="orderDetailOverlay">
+        <div class="order-detail-top">
+            <div style="display:flex;align-items:center;gap:12px;">
+                <button onclick="closeOrderDetail()" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:20px;line-height:1;padding:0 2px;">←</button>
+                <span id="orderDetailNum" style="font-family:monospace;font-size:14px;font-weight:700;"></span>
+                <span id="orderDetailStatus" class="status-badge"></span>
+            </div>
+            <button onclick="closeOrderDetail()" style="background:none;border:1px solid var(--border);color:var(--muted);border-radius:6px;padding:5px 12px;cursor:pointer;font-size:12px;">✕ ปิด</button>
+        </div>
+        <div class="order-detail-content" id="orderDetailBody"></div>
+    </div>
+
     <div class="lightbox" id="lightbox" onclick="closeLightbox()"><img id="lightboxImg" src="" alt=""></div>
 
     <script>
         const SCRIPT_URL = 'https://kayaman-api.skizztv.workers.dev';
         firebase.initializeApp(FIREBASE_CONFIG);
         const auth = firebase.auth();
-        let currentStaff = null, allOrders = [], currentTab = 'pending', currentOrder = null, selectedInfoType = null, selectedAgent = null, agentList = [];
+        let currentStaff = null, allOrders = [], currentTab = 'pending', currentOrder = null, selectedAgent = null, agentList = [];
+        let knownOrderNumbers = null, currentOrderDetail = null, selectedInfoTypes = [], uploadSlipBase64 = null, uploadSlipMime = null;
+        let selectedOrders = [], isFirstLoad = true;
 
         auth.onAuthStateChanged(async user => {
             if (user) {
@@ -804,20 +461,19 @@
         function renderTabs() {
             const role = currentStaff.role;
             let tabs = '';
-
             if (role === 'agent') {
                 tabs = `<div class="tab active" onclick="switchTab('assigned')" id="tab-assigned">🎯 งานของฉัน <span class="tab-badge" id="badge-assigned">0</span></div>`;
                 currentTab = 'assigned';
             } else {
                 tabs = `
-              <div class="tab active" onclick="switchTab('pending')" id="tab-pending">🔍 Pending Review <span class="tab-badge" id="badge-pending">0</span></div>
-              <div class="tab" onclick="switchTab('slip')" id="tab-slip">🧾 Slip Uploaded <span class="tab-badge" id="badge-slip">0</span></div>
-              <div class="tab" onclick="switchTab('needinfo')" id="tab-needinfo">💬 Need Info <span class="tab-badge" id="badge-needinfo">0</span></div>
-              <div class="tab" onclick="switchTab('waiting')" id="tab-waiting">⏳ รอโอนเงิน <span class="tab-badge" id="badge-waiting">0</span></div>
-              <div class="tab" onclick="switchTab('processing')" id="tab-processing">⚙️ Processing <span class="tab-badge" id="badge-processing">0</span></div>
-              <div class="tab" onclick="switchTab('error')" id="tab-error">⚠️ Error <span class="tab-badge" id="badge-error">0</span></div>
-              ${role === 'super_admin' ? `<div class="tab" onclick="switchTab('assigned')" id="tab-assigned">🎯 งานของฉัน <span class="tab-badge" id="badge-assigned">0</span></div>` : ''}
-            `;
+                    <div class="tab active" onclick="switchTab('pending')" id="tab-pending">🔍 Pending Review <span class="tab-badge" id="badge-pending">0</span></div>
+                    <div class="tab" onclick="switchTab('slip')" id="tab-slip">🧾 Slip Uploaded <span class="tab-badge" id="badge-slip">0</span></div>
+                    <div class="tab" onclick="switchTab('needinfo')" id="tab-needinfo">💬 Need Info <span class="tab-badge" id="badge-needinfo">0</span></div>
+                    <div class="tab" onclick="switchTab('waiting')" id="tab-waiting">⏳ รอโอนเงิน <span class="tab-badge" id="badge-waiting">0</span></div>
+                    <div class="tab" onclick="switchTab('processing')" id="tab-processing">⚙️ Processing <span class="tab-badge" id="badge-processing">0</span></div>
+                    <div class="tab" onclick="switchTab('error')" id="tab-error">⚠️ Error <span class="tab-badge" id="badge-error">0</span></div>
+                    ${role === 'super_admin' ? `<div class="tab" onclick="switchTab('assigned')" id="tab-assigned">🎯 งานของฉัน <span class="tab-badge" id="badge-assigned">0</span></div>` : ''}
+                `;
                 currentTab = 'pending';
             }
             document.getElementById('tabsContainer').innerHTML = tabs;
@@ -828,15 +484,83 @@
         function fetchJSON(url) { return fetch(url).then(r => r.json()); }
         function postJSON(url, body) { return fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).then(r => r.json()); }
 
+        /* ── Notification ── */
+        function playBeep() {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.frequency.value = 880;
+                gain.gain.setValueAtTime(0.25, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
+                osc.start(ctx.currentTime);
+                osc.stop(ctx.currentTime + 0.5);
+            } catch (e) {}
+        }
+
+        function showToast(msg, type = '') {
+            const el = document.createElement('div');
+            el.className = `toast ${type}`;
+            el.innerHTML = msg;
+            document.getElementById('toastContainer').appendChild(el);
+            setTimeout(() => {
+                el.style.transition = 'opacity .3s';
+                el.style.opacity = '0';
+                setTimeout(() => el.remove(), 300);
+            }, 5000);
+        }
+
+        function checkNewOrders(orders) {
+            if (knownOrderNumbers === null) {
+                knownOrderNumbers = new Set(orders.map(o => o.orderNumber));
+                return;
+            }
+            const newOnes = orders.filter(o => !knownOrderNumbers.has(o.orderNumber));
+            if (newOnes.length > 0) {
+                playBeep();
+                newOnes.forEach(o => showToast(`🔔 ออเดอร์ใหม่ <strong>${o.orderNumber}</strong><br><span style="color:var(--muted);font-size:12px;">${o.game} · ${o.customerName}</span>`, 'new-order'));
+            }
+            knownOrderNumbers = new Set(orders.map(o => o.orderNumber));
+        }
+
+        /* ── Copy ── */
+        function copyText(text, btn) {
+            navigator.clipboard.writeText(text).then(() => {
+                const orig = btn.textContent;
+                btn.textContent = '✓';
+                btn.classList.add('copied');
+                setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 1500);
+            }).catch(() => {});
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('orderDetailBody').addEventListener('click', e => {
+                const btn = e.target.closest('.btn-copy[data-copy]');
+                if (btn) copyText(btn.dataset.copy, btn);
+            });
+        });
+
+        /* ── Load Orders ── */
         async function loadOrders() {
             if (document.querySelector('.modal.open')) return;
-            if (currentStaff?.role === 'agent' && document.querySelector('.order-body.open')) return;
-            const isSilent = selectedOrders.length > 0;
+            const detailOpen = document.getElementById('orderDetailOverlay').classList.contains('open');
+            const isSilent = selectedOrders.length > 0 || detailOpen;
             if (!isSilent) {
                 document.getElementById('orderList').innerHTML = '<div class="loading"><div class="spinner"></div>กำลังโหลด...</div>';
             }
             const res = await fetchJSON(`${SCRIPT_URL}?action=getStaffOrders&role=${currentStaff.role}&email=${encodeURIComponent(currentStaff.email)}`);
-            if (res.success && !document.querySelector('.modal.open')) { allOrders = res.orders; updateBadges(); renderOrders(); }
+            if (res.success && !document.querySelector('.modal.open')) {
+                checkNewOrders(res.orders);
+                allOrders = res.orders;
+                updateBadges();
+                renderOrders();
+                if (detailOpen && currentOrderDetail) {
+                    const updated = allOrders.find(o => o.orderNumber === currentOrderDetail.orderNumber);
+                    if (updated) refreshOrderDetail(updated);
+                }
+            }
         }
 
         function updateBadges() {
@@ -866,10 +590,10 @@
 
         function driveUrl(url) {
             if (!url) return '';
-            const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
-            if (match) return `${SCRIPT_URL}?action=getImage&fileId=${match[1]}`;
-            const match2 = url.match(/id=([a-zA-Z0-9_-]+)/);
-            if (match2) return `${SCRIPT_URL}?action=getImage&fileId=${match2[1]}`;
+            const m1 = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+            if (m1) return `${SCRIPT_URL}?action=getImage&fileId=${m1[1]}`;
+            const m2 = url.match(/id=([a-zA-Z0-9_-]+)/);
+            if (m2) return `${SCRIPT_URL}?action=getImage&fileId=${m2[1]}`;
             return url;
         }
 
@@ -888,6 +612,15 @@
             return allOrders.filter(map[currentTab] || (() => false));
         }
 
+        /* ── Status CSS class helper ── */
+        function statusClass(status) {
+            if (!status) return '';
+            // ตัด suffix หลัง ":" ออก เช่น "Need Info: Email, Password" → "status-Need-Info"
+            const base = status.split(':')[0].trim();
+            return 'status-' + base.replace(/\s+/g, '-');
+        }
+
+        /* ── Render Orders (simplified card — details in overlay) ── */
         function renderOrders() {
             if (selectedOrders.length > 0) {
                 const processing = new Set(allOrders.filter(o => o.status === 'Processing').map(o => o.orderNumber));
@@ -895,111 +628,135 @@
             }
             const role = currentStaff.role;
             const filtered = getTabOrders();
-            if (!filtered.length) { document.getElementById('orderList').innerHTML = '<div class="empty">ไม่มีออเดอร์ในขณะนี้ 🎉</div>'; updateBulkAssignBar(); return; }
+            if (!filtered.length) {
+                document.getElementById('orderList').innerHTML = '<div class="empty">ไม่มีออเดอร์ในขณะนี้ 🎉</div>';
+                updateBulkAssignBar();
+                return;
+            }
             document.getElementById('orderList').innerHTML = filtered.map(order => {
-                const sc = 'status-' + (order.status || '').replace(/[\s:]+/g, '-');
-                const pkgImages = order.packageImage ? order.packageImage.split(',').map(u => u.trim()).filter(Boolean) : [];
+                const sc = statusClass(order.status);
                 const orderJson = JSON.stringify(order).replace(/"/g, '&quot;');
-                const canRequestInfo = (['super_admin', 'admin'].includes(role) && order.status === 'Processing') ||
-                    (role === 'agent' && order.status === 'In Progress' && order.agentEmail === currentStaff.email);
                 const canAssign = role === 'super_admin' && order.status === 'Processing';
-                const canAccept = role === 'agent' && order.status === 'Assigned' && order.agentEmail === currentStaff.email;
-                const canComplete = (role === 'super_admin' && order.status === 'Assigned' && order.agentEmail === currentStaff.email) ||
-                    (role === 'agent' && order.status === 'In Progress' && order.agentEmail === currentStaff.email);
-                const canConfirmPrice = order.status === 'Pending Review' && ['super_admin', 'admin'].includes(role);
-                const canConfirmSlip = order.status === 'Slip Uploaded' && ['super_admin', 'admin'].includes(role);
-
                 return `<div class="order-card">
-                          <div class="order-header" onclick="toggleOrder('order-${order.orderNumber}')">
-                            <div class="order-header-left">
-                              ${canAssign ? `<input type="checkbox" class="order-checkbox" value="${order.orderNumber}" data-row="${order.row}" onclick="event.stopPropagation()" onchange="updateBulkAssign()">` : ''}
-                              <div class="order-number">${order.orderNumber}</div>
-                              <div class="order-meta">${order.game} · ${order.customerName}</div>
-                            </div>
-                            <span class="status-badge ${sc}">${order.status}</span>
-                          </div>
-                          <div class="order-body" id="order-${order.orderNumber}">
-                            <div class="info-grid">
-                              <div class="info-item"><label>เกม</label><span>${order.game}</span></div>
-                              <div class="info-item"><label>ลูกค้า</label><span>${order.customerName}</span></div>
-                              <div class="info-item"><label>แพ็คเกจ</label><span>${order.package}</span></div>
-                              <div class="info-item"><label>ราคา</label><span>฿${Number(String(order.orderPrice || 0).replace(/,/g, '')).toLocaleString()}</span></div>
-                              ${order.orderFrom ? `<div class="info-item"><label>Order From</label><span>${order.orderFrom}</span></div>` : ''}
-                              ${order.customerType ? `<div class="info-item"><label>Customer Type</label><span>${order.customerType}</span></div>` : ''}
-                              ${order.loginForm ? `<div class="info-item"><label>Login Form</label><span>${order.loginForm}</span></div>` : ''}
-                              ${order.charName ? `<div class="info-item"><label>Character Name</label><span>${order.charName}</span></div>` : ''}
-                              ${order.level ? `<div class="info-item"><label>Level</label><span>${order.level}</span></div>` : ''}
-                              ${order.server ? `<div class="info-item"><label>Server</label><span>${order.server}</span></div>` : ''}
-                              ${order.emailId && order.emailId !== '***' ? `<div class="info-item"><label>Email/ID</label><span class="sensitive">${order.emailId}</span></div>` : ''}
-                              ${order.pass && order.pass !== '***' ? `<div class="info-item"><label>Password</label><span class="sensitive">${order.pass}</span></div>` : ''}
-                              ${order.uid && order.uid !== '***' ? `<div class="info-item"><label>UID</label><span class="sensitive">${order.uid}</span></div>` : ''}
-                              ${order.agentEmail ? `<div class="info-item"><label>Agent</label><span>${order.agentEmail}</span></div>` : ''}
-                              <div class="info-item"><label>วันที่</label><span>${new Date(order.date).toLocaleDateString('th-TH')}</span></div>
-                            </div>
-                            ${pkgImages.length ? `<div style="margin-bottom:10px;"><div style="font-size:11px;color:var(--muted);margin-bottom:8px;">รูปแพ็คเกจ</div><div class="img-row">${pkgImages.map((url, i) => `<div><img src="${driveUrl(url)}" class="img-thumb" onclick="openLightbox('${driveUrl(url)}')" onerror="this.style.display='none'"><div class="img-label">รูปที่ ${i + 1}</div></div>`).join('')}</div></div>` : ''}
-                            ${order.slipImage ? `<div style="margin-bottom:10px;"><div style="font-size:11px;color:var(--muted);margin-bottom:8px;">สลิป</div><div class="img-row"><div><img src="${driveUrl(order.slipImage)}" class="img-thumb" onclick="openLightbox('${driveUrl(order.slipImage)}')" onerror="this.style.display='none'"><div class="img-label">สลิปการโอน</div></div></div></div>` : ''}
-                            <div class="action-row"><button class="btn-confirm" style="background:#2a2d36;color:#888;cursor:not-allowed;" disabled>💬 แชทกับลูกค้า (เร็วๆนี้)</button>
-                              ${canConfirmPrice ? `<button class="btn-confirm btn-confirm-price" onclick="openPriceModal(${orderJson})">กำหนดราคา 💰</button>` : ''}
-                              ${canConfirmSlip ? `<button class="btn-confirm btn-confirm-slip" onclick="openSlipModal(${orderJson})">ตรวจสอบสลิป 🧾</button>` : ''}
-                              ${canRequestInfo ? `<button class="btn-confirm btn-request-info" onclick="openRequestInfoModal(${orderJson})">ขอข้อมูล 📋</button>` : ''}
-                              ${canAssign ? `<button class="btn-confirm btn-assign" onclick="openAssignModal(${orderJson})">มอบหมาย Agent 🎯</button>` : ''}
-                              ${canAccept ? `<button class="btn-confirm btn-accept" onclick="submitAcceptJob(${orderJson})">รับงานนี้ ✋</button>` : ''}
-                              ${canComplete ? `<button class="btn-confirm btn-complete" onclick="submitComplete(${orderJson})">เติมเสร็จแล้ว ✅</button>` : ''}
-                            </div>
-                          </div>
-                        </div>`;
+                    <div class="order-header" onclick="openOrderDetail(${orderJson})" style="cursor:pointer;">
+                        <div class="order-header-left">
+                            ${canAssign ? `<input type="checkbox" class="order-checkbox" value="${order.orderNumber}" data-row="${order.row}" onclick="event.stopPropagation()" onchange="updateBulkAssign()">` : ''}
+                            <div class="order-number">${order.orderNumber}</div>
+                            <div class="order-meta">${order.game} · ${order.customerName}</div>
+                        </div>
+                        <span class="status-badge ${sc}">${order.status}</span>
+                    </div>
+                </div>`;
             }).join('');
             const selectedSet = new Set(selectedOrders.map(o => o.orderNumber));
-            document.querySelectorAll('.order-checkbox').forEach(cb => {
-                if (selectedSet.has(cb.value)) cb.checked = true;
-            });
+            document.querySelectorAll('.order-checkbox').forEach(cb => { if (selectedSet.has(cb.value)) cb.checked = true; });
             updateBulkAssignBar();
-            expandedOrders.forEach(orderNumber => {
-                const el = document.getElementById(`order-${orderNumber}`)
-                if (el) el.classList.add('open')
-            })
         }
 
-        function toggleOrder(id) {
-            const el = document.getElementById(id)
-            if (!el) return
-            el.classList.toggle('open')
-            const orderNumber = id.replace('order-', '')
-            if (el.classList.contains('open')) {
-                expandedOrders.add(orderNumber)
-            } else {
-                expandedOrders.delete(orderNumber)
+        /* ── Order Detail Overlay ── */
+        function openOrderDetail(order) {
+            currentOrderDetail = order;
+            refreshOrderDetail(order);
+            document.getElementById('orderDetailOverlay').classList.add('open');
+        }
+
+        function refreshOrderDetail(order) {
+            currentOrderDetail = order;
+            const sc = statusClass(order.status);
+            document.getElementById('orderDetailNum').textContent = order.orderNumber;
+            const badge = document.getElementById('orderDetailStatus');
+            badge.textContent = order.status;
+            badge.className = `status-badge ${sc}`;
+
+            const role = currentStaff.role;
+            const pkgImages = order.packageImage ? order.packageImage.split(',').map(u => u.trim()).filter(Boolean) : [];
+            const orderJson = JSON.stringify(order).replace(/"/g, '&quot;');
+
+            const canRequestInfo =
+                (['super_admin', 'admin'].includes(role) && (order.status === 'Processing' || (order.status === 'Assigned' && order.agentEmail === currentStaff.email))) ||
+                (role === 'agent' && (order.status === 'In Progress' || order.status === 'Assigned') && order.agentEmail === currentStaff.email);
+            const canAssign = role === 'super_admin' && order.status === 'Processing';
+            const canAccept = role === 'agent' && order.status === 'Assigned' && order.agentEmail === currentStaff.email;
+            const canComplete = (role === 'super_admin' && order.status === 'Assigned' && order.agentEmail === currentStaff.email) ||
+                (role === 'agent' && order.status === 'In Progress' && order.agentEmail === currentStaff.email);
+            const canConfirmPrice = order.status === 'Pending Review' && ['super_admin', 'admin'].includes(role);
+            const canConfirmSlip = order.status === 'Slip Uploaded' && ['super_admin', 'admin'].includes(role);
+            const canUploadSlip = order.status === 'Waiting for Transfer' && ['super_admin', 'admin'].includes(role);
+            const canEditInfo = ['super_admin', 'admin'].includes(role) && order.status?.startsWith('Need Info');
+            const canResolveError = role === 'super_admin' && order.status === 'Error';
+
+            function copyField(label, val, cls = '') {
+                if (!val || val === '***') return '';
+                const safe = String(val).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                return `<div class="info-item"><label>${label}</label><span${cls ? ` class="${cls}"` : ''}>${val} <button class="btn-copy" data-copy="${safe}">copy</button></span></div>`;
             }
+
+            document.getElementById('orderDetailBody').innerHTML = `
+                <div class="info-grid">
+                    <div class="info-item"><label>เกม</label><span>${order.game}</span></div>
+                    <div class="info-item"><label>ลูกค้า</label><span>${order.customerName}</span></div>
+                    <div class="info-item"><label>แพ็คเกจ</label><span>${order.package}</span></div>
+                    <div class="info-item"><label>ราคา</label><span>฿${Number(String(order.orderPrice || 0).replace(/,/g, '')).toLocaleString()}</span></div>
+                    ${order.orderFrom ? `<div class="info-item"><label>Order From</label><span>${order.orderFrom}</span></div>` : ''}
+                    ${order.customerType ? `<div class="info-item"><label>Customer Type</label><span>${order.customerType}</span></div>` : ''}
+                    ${order.loginForm ? `<div class="info-item"><label>Login Form</label><span>${order.loginForm}</span></div>` : ''}
+                    ${order.charName ? `<div class="info-item"><label>Character Name</label><span>${order.charName}</span></div>` : ''}
+                    ${order.level ? `<div class="info-item"><label>Level</label><span>${order.level}</span></div>` : ''}
+                    ${order.server ? `<div class="info-item"><label>Server</label><span>${order.server}</span></div>` : ''}
+                    ${copyField('Email/ID', order.emailId, 'sensitive')}
+                    ${copyField('Password', order.pass, 'sensitive')}
+                    ${copyField('UID', order.uid, 'sensitive')}
+                    ${order.agentEmail ? `<div class="info-item"><label>Agent</label><span>${order.agentEmail}</span></div>` : ''}
+                    <div class="info-item"><label>วันที่</label><span>${new Date(order.date).toLocaleDateString('th-TH')}</span></div>
+                </div>
+                ${pkgImages.length ? `<div style="margin-bottom:10px;"><div style="font-size:11px;color:var(--muted);margin-bottom:8px;">รูปแพ็คเกจ</div><div class="img-row">${pkgImages.map((url, i) => `<div><img src="${driveUrl(url)}" class="img-thumb" onclick="openLightbox('${driveUrl(url)}')" onerror="this.style.display='none'"><div class="img-label">รูปที่ ${i + 1}</div></div>`).join('')}</div></div>` : ''}
+                ${order.slipImage ? `<div style="margin-bottom:10px;"><div style="font-size:11px;color:var(--muted);margin-bottom:8px;">สลิป</div><div class="img-row"><div><img src="${driveUrl(order.slipImage)}" class="img-thumb" onclick="openLightbox('${driveUrl(order.slipImage)}')" onerror="this.style.display='none'"><div class="img-label">สลิปการโอน</div></div></div></div>` : ''}
+                ${order.requestLog ? `<div class="order-log"><div class="order-log-title">📋 Log</div>${order.requestLog.split('\n').filter(Boolean).map(entry => `<div class="log-entry${entry.includes('Error') || entry.includes('error') ? ' error-entry' : ''}">${entry}</div>`).join('')}</div>` : ''}
+                <div class="action-row" style="margin-top:8px;">
+                    <button class="btn-confirm" style="background:#2a2d36;color:#888;cursor:not-allowed;" disabled>💬 แชทกับลูกค้า (เร็วๆนี้)</button>
+                    ${canConfirmPrice ? `<button class="btn-confirm btn-confirm-price" onclick="openPriceModal(${orderJson})">กำหนดราคา 💰</button>` : ''}
+                    ${canConfirmSlip ? `<button class="btn-confirm btn-confirm-slip" onclick="openSlipModal(${orderJson})">ตรวจสอบสลิป 🧾</button>` : ''}
+                    ${canUploadSlip ? `<button class="btn-confirm" style="background:#1a0a2e;color:#cc88ff;border:1px solid #cc88ff;" onclick="openUploadSlipModal(${orderJson})">📤 อัปสลิปแทนลูกค้า</button>` : ''}
+                    ${canEditInfo ? `<button class="btn-confirm" style="background:#002a1a;color:var(--success);border:1px solid var(--success);" onclick="openEditInfoModal(${orderJson})">✏️ แก้ไข Info</button>` : ''}
+                    ${canResolveError ? `<button class="btn-confirm" style="background:#2a0000;color:var(--danger);border:1px solid var(--danger);" onclick="openErrorResolveModal(${orderJson})">🛠️ จัดการ Error</button>` : ''}
+                    ${canRequestInfo ? `<button class="btn-confirm btn-request-info" onclick="openRequestInfoModal(${orderJson})" style="border:1px solid var(--border);">ขอข้อมูล 📋</button>` : ''}
+                    ${canAssign ? `<button class="btn-confirm btn-assign" onclick="openAssignModal(${orderJson})">มอบหมาย Agent 🎯</button>` : ''}
+                    ${canAccept ? `<button class="btn-confirm btn-accept" onclick="submitAcceptJob(${orderJson})">รับงานนี้ ✋</button>` : ''}
+                    ${canComplete ? `<button class="btn-confirm btn-complete" onclick="submitComplete(${orderJson})">เติมเสร็จแล้ว ✅</button>` : ''}
+                </div>
+            `;
         }
 
-        // Price Modal
+        function closeOrderDetail() {
+            document.getElementById('orderDetailOverlay').classList.remove('open');
+            currentOrderDetail = null;
+        }
+
+        /* ── Price Modal ── */
         function openPriceModal(order) {
             currentOrder = order;
             const pkgImages = order.packageImage ? order.packageImage.split(',').map(u => u.trim()).filter(Boolean) : [];
             const pkgNames = order.package ? order.package.split(',').map(u => u.trim()).filter(Boolean) : [];
 
-            // ถ้ามีหลายแพ็ค ให้แสดง input แยกแต่ละอัน
             if (pkgImages.length > 1) {
                 document.getElementById('priceModalImages').innerHTML = pkgImages.map((url, i) => `
-      <div style="display:flex;flex-direction:column;gap:6px;width:100%;margin-bottom:12px;">
-        <div style="display:flex;align-items:center;gap:10px;">
-          <img src="${driveUrl(url)}" class="img-thumb" onclick="openLightbox('${driveUrl(url)}')" onerror="this.style.display='none'">
-          <div style="flex:1;">
-            <div style="font-size:12px;color:var(--muted);margin-bottom:4px;">${pkgNames[i] || `แพ็คที่ ${i + 1}`}</div>
-            <input type="number" id="priceInput_${i}" placeholder="กรอกราคา" 
-              style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-size:14px;outline:none;"
-              oninput="calcTotalPrice()">
-          </div>
-        </div>
-      </div>
-    `).join('');
+                    <div style="display:flex;flex-direction:column;gap:6px;width:100%;margin-bottom:12px;">
+                        <div style="display:flex;align-items:center;gap:10px;">
+                            <img src="${driveUrl(url)}" class="img-thumb" onclick="openLightbox('${driveUrl(url)}')" onerror="this.style.display='none'">
+                            <div style="flex:1;">
+                                <div style="font-size:12px;color:var(--muted);margin-bottom:4px;">${pkgNames[i] || `แพ็คที่ ${i + 1}`}</div>
+                                <input type="number" id="priceInput_${i}" placeholder="กรอกราคา"
+                                    style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;color:var(--text);font-size:14px;outline:none;"
+                                    oninput="calcTotalPrice()">
+                            </div>
+                        </div>
+                    </div>`).join('');
                 document.getElementById('priceInput').style.display = 'none';
                 document.getElementById('priceTotalDisplay').style.display = 'flex';
             } else {
                 document.getElementById('priceModalImages').innerHTML = pkgImages.map(url => `
-      <div><img src="${driveUrl(url)}" class="img-thumb" onclick="openLightbox('${driveUrl(url)}')">
-      <div class="img-label">รูปแพ็คเกจ</div></div>
-    `).join('');
+                    <div><img src="${driveUrl(url)}" class="img-thumb" onclick="openLightbox('${driveUrl(url)}')">
+                    <div class="img-label">รูปแพ็คเกจ</div></div>`).join('');
                 document.getElementById('priceInput').style.display = '';
                 document.getElementById('priceTotalDisplay').style.display = 'none';
             }
@@ -1013,27 +770,24 @@
         }
 
         function calcTotalPrice() {
-            const inputs = document.querySelectorAll('[id^="priceInput_"]')
-            let total = 0
-            inputs.forEach(input => { total += parseFloat(input.value) || 0 })
-            document.getElementById('priceTotalValue').textContent = '฿' + total.toLocaleString()
+            let total = 0;
+            document.querySelectorAll('[id^="priceInput_"]').forEach(input => { total += parseFloat(input.value) || 0; });
+            document.getElementById('priceTotalValue').textContent = '฿' + total.toLocaleString();
         }
 
         function closePriceModal() { document.getElementById('priceModal').classList.remove('open'); currentOrder = null; }
+
         async function submitConfirmPrice() {
-            const multiInputs = document.querySelectorAll('[id^="priceInput_"]')
-            const isSinglePkg = document.getElementById('priceInput').style.display !== 'none'
-            let price = 0
-
+            const multiInputs = document.querySelectorAll('[id^="priceInput_"]');
+            const isSinglePkg = document.getElementById('priceInput').style.display !== 'none';
+            let price = 0;
             if (isSinglePkg) {
-                price = parseFloat(document.getElementById('priceInput').value)
+                price = parseFloat(document.getElementById('priceInput').value);
             } else {
-                multiInputs.forEach(input => { price += parseFloat(input.value) || 0 })
+                multiInputs.forEach(input => { price += parseFloat(input.value) || 0; });
             }
-            // บวกราคาแพ็คปกติเข้าไปด้วย (ถ้ามี)
-            const normalPrice = Number(String(currentOrder.orderPrice || 0).replace(/,/g, ''))
-            price += normalPrice
-
+            const normalPrice = Number(String(currentOrder.orderPrice || 0).replace(/,/g, ''));
+            price += normalPrice;
             if (!price || price <= 0) { document.getElementById('priceMsg').innerHTML = '<div class="msg error">กรุณากรอกราคา</div>'; return; }
             const btn = document.getElementById('confirmPriceBtn'); btn.disabled = true; btn.textContent = 'กำลังบันทึก...';
             const res = await postJSON(SCRIPT_URL, { action: 'confirmPrice', data: { row: currentOrder.row, price, staffEmail: currentStaff.email, assignedTo: `${currentStaff.email} — ${new Date().toLocaleString('th-TH')}` } });
@@ -1041,7 +795,7 @@
             else { document.getElementById('priceMsg').innerHTML = '<div class="msg error">เกิดข้อผิดพลาด</div>'; btn.disabled = false; btn.textContent = 'ยืนยัน ✅'; }
         }
 
-        // Slip Modal
+        /* ── Slip Modal ── */
         function openSlipModal(order) {
             currentOrder = order;
             document.getElementById('slipModalImg').src = driveUrl(order.slipImage) || '';
@@ -1053,7 +807,9 @@
             document.getElementById('confirmSlipBtn').textContent = 'ยืนยัน ✅';
             document.getElementById('slipModal').classList.add('open');
         }
+
         function closeSlipModal() { document.getElementById('slipModal').classList.remove('open'); currentOrder = null; }
+
         async function submitConfirmSlip() {
             const amount = parseFloat(document.getElementById('slipAmountInput').value);
             const expected = Number(String(currentOrder.orderPrice || 0).replace(/,/g, ''));
@@ -1065,29 +821,115 @@
             else { document.getElementById('slipMsg').innerHTML = '<div class="msg error">เกิดข้อผิดพลาด</div>'; btn.disabled = false; btn.textContent = 'ยืนยัน ✅'; }
         }
 
-        // Request Info Modal
+        /* ── Upload Slip by Staff ── */
+        function openUploadSlipModal(order) {
+            currentOrder = order;
+            uploadSlipBase64 = null;
+            uploadSlipMime = null;
+            document.getElementById('uploadSlipFile').value = '';
+            document.getElementById('uploadSlipPreview').innerHTML = '';
+            document.getElementById('uploadSlipMsg').innerHTML = '';
+            document.getElementById('confirmUploadSlipBtn').disabled = false;
+            document.getElementById('confirmUploadSlipBtn').textContent = 'อัปโหลด ✅';
+            document.getElementById('uploadSlipOrderInfo').textContent = `${order.customerName} · ${order.game} · ฿${Number(String(order.orderPrice || 0).replace(/,/g, '')).toLocaleString()}`;
+            document.getElementById('uploadSlipModal').classList.add('open');
+        }
+
+        function closeUploadSlipModal() { document.getElementById('uploadSlipModal').classList.remove('open'); currentOrder = null; uploadSlipBase64 = null; uploadSlipMime = null; }
+
+        function previewUploadSlip(input) {
+            const file = input.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = ev => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    const maxSize = 1200;
+                    let w = img.width, h = img.height;
+                    if (w > maxSize) { h = h * maxSize / w; w = maxSize; }
+                    if (h > maxSize) { w = w * maxSize / h; h = maxSize; }
+                    canvas.width = w; canvas.height = h;
+                    canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                    const compressed = canvas.toDataURL('image/jpeg', 0.85);
+                    uploadSlipBase64 = compressed.split(',')[1];
+                    uploadSlipMime = 'image/jpeg';
+                    document.getElementById('uploadSlipPreview').innerHTML = `<img src="${compressed}" style="max-width:100%;max-height:200px;border-radius:8px;border:1px solid var(--border);">`;
+                };
+                img.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function submitStaffUploadSlip() {
+            if (!uploadSlipBase64) { document.getElementById('uploadSlipMsg').innerHTML = '<div class="msg error">กรุณาเลือกไฟล์</div>'; return; }
+            const btn = document.getElementById('confirmUploadSlipBtn'); btn.disabled = true; btn.textContent = 'กำลังอัปโหลด...';
+            const res = await postJSON(SCRIPT_URL, { action: 'uploadSlip', data: { orderNumber: currentOrder.orderNumber, fileBase64: uploadSlipBase64, mimeType: uploadSlipMime, slipAmount: Number(String(currentOrder.orderPrice || 0).replace(/,/g, '')) } });
+            if (res.success) { closeUploadSlipModal(); loadOrders(); }
+            else { document.getElementById('uploadSlipMsg').innerHTML = '<div class="msg error">เกิดข้อผิดพลาด กรุณาลองใหม่</div>'; btn.disabled = false; btn.textContent = 'อัปโหลด ✅'; }
+        }
+
+        /* ── Request Info Modal (multi-select) ── */
         function openRequestInfoModal(order) {
             currentOrder = order;
-            selectedInfoType = null;
-            document.querySelectorAll('.info-type-btn').forEach(b => b.classList.remove('selected'));
+            selectedInfoTypes = [];
+            document.querySelectorAll('.info-type-check-item').forEach(item => {
+                item.classList.remove('checked');
+                item.querySelector('input').checked = false;
+            });
             document.getElementById('requestOrderInfo').textContent = `${order.customerName} · ${order.game}`;
             document.getElementById('requestMsg').innerHTML = '';
+            document.getElementById('confirmRequestBtn').disabled = false;
+            document.getElementById('confirmRequestBtn').textContent = 'ส่งคำขอ ✅';
             document.getElementById('requestInfoModal').classList.add('open');
         }
-        function closeRequestInfoModal() { document.getElementById('requestInfoModal').classList.remove('open'); currentOrder = null; selectedInfoType = null; }
-        function selectInfoType(type) {
-            selectedInfoType = type;
-            document.querySelectorAll('.info-type-btn').forEach(b => { b.classList.toggle('selected', b.textContent.includes(type)); });
+
+        function closeRequestInfoModal() { document.getElementById('requestInfoModal').classList.remove('open'); currentOrder = null; selectedInfoTypes = []; }
+
+        function toggleCheckItem(label) {
+            const cb = label.querySelector('input[type="checkbox"]');
+            cb.checked = !cb.checked;
+            label.classList.toggle('checked', cb.checked);
+            const val = cb.value;
+            if (cb.checked) { if (!selectedInfoTypes.includes(val)) selectedInfoTypes.push(val); }
+            else { selectedInfoTypes = selectedInfoTypes.filter(t => t !== val); }
         }
+
         async function submitRequestInfo() {
-            if (!selectedInfoType) { document.getElementById('requestMsg').innerHTML = '<div class="msg error">กรุณาเลือกประเภทข้อมูล</div>'; return; }
+            if (!selectedInfoTypes.length) { document.getElementById('requestMsg').innerHTML = '<div class="msg error">กรุณาเลือกอย่างน้อย 1 รายการ</div>'; return; }
             const btn = document.getElementById('confirmRequestBtn'); btn.disabled = true; btn.textContent = 'กำลังส่ง...';
-            const res = await postJSON(SCRIPT_URL, { action: 'requestInfo', data: { orderNumber: currentOrder.orderNumber, type: selectedInfoType, staffName: currentStaff.name || currentStaff.email } });
+            const res = await postJSON(SCRIPT_URL, { action: 'requestInfo', data: { orderNumber: currentOrder.orderNumber, type: selectedInfoTypes.join(', '), types: selectedInfoTypes, staffName: currentStaff.name || currentStaff.email } });
             if (res.success) { closeRequestInfoModal(); loadOrders(); }
             else { document.getElementById('requestMsg').innerHTML = '<div class="msg error">เกิดข้อผิดพลาด</div>'; btn.disabled = false; btn.textContent = 'ส่งคำขอ ✅'; }
         }
 
-        // Assign Modal
+        /* ── Edit Info Modal ── */
+        function openEditInfoModal(order) {
+            currentOrder = order;
+            document.getElementById('editEmailId').value = (order.emailId && order.emailId !== '***') ? order.emailId : '';
+            document.getElementById('editPassword').value = (order.pass && order.pass !== '***') ? order.pass : '';
+            document.getElementById('editUid').value = (order.uid && order.uid !== '***') ? order.uid : '';
+            document.getElementById('editInfoOrderInfo').textContent = `${order.customerName} · ${order.game}`;
+            document.getElementById('editInfoMsg').innerHTML = '';
+            document.getElementById('confirmEditInfoBtn').disabled = false;
+            document.getElementById('confirmEditInfoBtn').textContent = 'บันทึก ✅';
+            document.getElementById('editInfoModal').classList.add('open');
+        }
+
+        function closeEditInfoModal() { document.getElementById('editInfoModal').classList.remove('open'); currentOrder = null; }
+
+        async function submitEditInfo() {
+            const emailId = document.getElementById('editEmailId').value.trim();
+            const pass = document.getElementById('editPassword').value.trim();
+            const uid = document.getElementById('editUid').value.trim();
+            if (!emailId && !pass && !uid) { document.getElementById('editInfoMsg').innerHTML = '<div class="msg error">กรุณากรอกข้อมูลที่ต้องการแก้ไขอย่างน้อย 1 ช่อง</div>'; return; }
+            const btn = document.getElementById('confirmEditInfoBtn'); btn.disabled = true; btn.textContent = 'กำลังบันทึก...';
+            const res = await postJSON(SCRIPT_URL, { action: 'updateOrderInfo', data: { row: currentOrder.row, emailId: emailId || undefined, pass: pass || undefined, uid: uid || undefined, staffEmail: currentStaff.email } });
+            if (res.success) { closeEditInfoModal(); loadOrders(); }
+            else { document.getElementById('editInfoMsg').innerHTML = '<div class="msg error">เกิดข้อผิดพลาด</div>'; btn.disabled = false; btn.textContent = 'บันทึก ✅'; }
+        }
+
+        /* ── Assign Modal ── */
         async function openAssignModal(order) {
             currentOrder = order;
             selectedAgent = null;
@@ -1095,34 +937,85 @@
             document.getElementById('confirmAssignBtn').textContent = 'มอบหมาย ✅';
             document.getElementById('assignOrderInfo').textContent = `${order.customerName} · ${order.game} · ${order.package}`;
             document.getElementById('assignMsg').innerHTML = '';
-
-            // โหลด agent list
             const res = await fetchJSON(`${SCRIPT_URL}?action=getAgents`);
             agentList = res.agents || [];
             if (currentStaff.role === 'super_admin' && !agentList.find(a => a.email === currentStaff.email)) {
                 agentList = [{ name: (currentStaff.name || currentStaff.email) + ' (ฉัน)', email: currentStaff.email }, ...agentList];
             }
             document.getElementById('agentList').innerHTML = agentList.map(a => `
-                        <div class="agent-item" onclick="selectAgent('${a.email}', this)">${a.name} <span style="color:var(--muted);font-size:11px;">${a.email}</span></div>
-                      `).join('') || '<div style="color:var(--muted);font-size:13px;">ไม่มี Agent</div>';
-
+                <div class="agent-item" onclick="selectAgent('${a.email}', this)">${a.name} <span style="color:var(--muted);font-size:11px;">${a.email}</span></div>
+            `).join('') || '<div style="color:var(--muted);font-size:13px;">ไม่มี Agent</div>';
             document.getElementById('assignModal').classList.add('open');
         }
+
         function closeAssignModal() { document.getElementById('assignModal').classList.remove('open'); currentOrder = null; selectedAgent = null; }
+
         function selectAgent(email, el) {
             selectedAgent = email;
             document.querySelectorAll('.agent-item').forEach(a => a.classList.remove('selected'));
             el.classList.add('selected');
         }
+
+        /* ── Bulk Assign ── */
+        function updateBulkAssign() {
+            const checkboxes = document.querySelectorAll('.order-checkbox:checked');
+            selectedOrders = Array.from(checkboxes).map(cb => ({ orderNumber: cb.value, row: parseInt(cb.dataset.row) }));
+            const bar = document.getElementById('bulkBar');
+            if (selectedOrders.length > 0) { bar.style.display = 'flex'; document.getElementById('bulkCount').textContent = `เลือก ${selectedOrders.length} ออเดอร์`; }
+            else { bar.style.display = 'none'; }
+        }
+
+        function updateBulkAssignBar() {
+            const bar = document.getElementById('bulkBar');
+            if (selectedOrders.length > 0) { bar.style.display = 'flex'; document.getElementById('bulkCount').textContent = `เลือก ${selectedOrders.length} ออเดอร์`; }
+            else { bar.style.display = 'none'; }
+        }
+
+        function clearSelection() {
+            document.querySelectorAll('.order-checkbox').forEach(cb => cb.checked = false);
+            selectedOrders = [];
+            updateBulkAssignBar();
+        }
+
+        async function openBulkAssignModal() {
+            if (!selectedOrders.length) return;
+            currentOrder = null;
+            selectedAgent = null;
+            document.getElementById('confirmAssignBtn').disabled = false;
+            document.getElementById('confirmAssignBtn').textContent = 'มอบหมาย ✅';
+            document.getElementById('assignOrderInfo').textContent = `มอบหมาย ${selectedOrders.length} ออเดอร์พร้อมกัน`;
+            document.getElementById('assignMsg').innerHTML = '';
+            const res = await fetchJSON(`${SCRIPT_URL}?action=getAgents`);
+            agentList = res.agents || [];
+            if (currentStaff.role === 'super_admin' && !agentList.find(a => a.email === currentStaff.email)) {
+                agentList = [{ name: (currentStaff.name || currentStaff.email) + ' (ฉัน)', email: currentStaff.email }, ...agentList];
+            }
+            document.getElementById('agentList').innerHTML = agentList.map(a => `
+                <div class="agent-item" onclick="selectAgent('${a.email}', this)">${a.name} <span style="color:var(--muted);font-size:11px;">${a.email}</span></div>
+            `).join('') || '<div style="color:var(--muted);">ไม่มี Agent</div>';
+            document.getElementById('assignModal').classList.add('open');
+        }
+
         async function submitAssign() {
             if (!selectedAgent) { document.getElementById('assignMsg').innerHTML = '<div class="msg error">กรุณาเลือก Agent</div>'; return; }
             const btn = document.getElementById('confirmAssignBtn'); btn.disabled = true; btn.textContent = 'กำลังมอบหมาย...';
-            const res = await postJSON(SCRIPT_URL, { action: 'assignAgent', data: { row: currentOrder.row, agentEmail: selectedAgent, assignedTo: currentOrder.assignedTo, priceConfirmedBy: currentOrder.priceConfirmedBy, slipConfirmedBy: currentOrder.slipConfirmedBy, requestLog: currentOrder.requestLog || '' } });
-            if (res.success) { closeAssignModal(); loadOrders(); }
-            else { document.getElementById('assignMsg').innerHTML = '<div class="msg error">เกิดข้อผิดพลาด</div>'; btn.disabled = false; btn.textContent = 'มอบหมาย ✅'; }
+            const ordersToAssign = selectedOrders.length > 0 ? selectedOrders : [{ row: currentOrder.row, orderNumber: currentOrder.orderNumber }];
+            try {
+                await Promise.all(ordersToAssign.map(o => {
+                    const order = allOrders.find(a => a.orderNumber === o.orderNumber) || currentOrder;
+                    return postJSON(SCRIPT_URL, { action: 'assignAgent', data: { row: o.row, agentEmail: selectedAgent, assignedTo: order?.assignedTo || '', priceConfirmedBy: order?.priceConfirmedBy || '', slipConfirmedBy: order?.slipConfirmedBy || '', requestLog: order?.requestLog || '' } });
+                }));
+                closeAssignModal();
+                clearSelection();
+                loadOrders();
+            } catch {
+                document.getElementById('assignMsg').innerHTML = '<div class="msg error">เกิดข้อผิดพลาด</div>';
+                btn.disabled = false;
+                btn.textContent = 'มอบหมาย ✅';
+            }
         }
 
-        // Accept Job
+        /* ── Accept / Complete ── */
         async function submitAcceptJob(order) {
             if (!confirm(`รับงาน ${order.game} · ${order.customerName}?\nหลังรับแล้วจะไม่มีใครสามารถรับงานนี้ซ้ำได้`)) return;
             const res = await postJSON(SCRIPT_URL, { action: 'acceptJob', data: { row: order.row } });
@@ -1131,13 +1024,15 @@
                 if (o) o.status = 'In Progress';
                 updateBadges();
                 renderOrders();
-                document.getElementById(`order-${order.orderNumber}`)?.classList.add('open');
+                if (currentOrderDetail?.orderNumber === order.orderNumber) {
+                    const updated = { ...order, status: 'In Progress' };
+                    refreshOrderDetail(updated);
+                }
             } else {
                 alert(res.message || res.error || 'เกิดข้อผิดพลาด');
             }
         }
 
-        // Complete Order
         async function submitComplete(order) {
             if (!confirm(`ยืนยันว่าเติม ${order.game} ให้ ${order.customerName} เสร็จแล้ว?`)) return;
             const res = await postJSON(SCRIPT_URL, { action: 'completeOrder', data: { row: order.row } });
@@ -1145,109 +1040,103 @@
                 allOrders = allOrders.filter(a => a.orderNumber !== order.orderNumber);
                 updateBadges();
                 renderOrders();
+                closeOrderDetail();
             } else {
                 alert('เกิดข้อผิดพลาด');
             }
         }
 
+        /* ── Lightbox ── */
         function openLightbox(url) { document.getElementById('lightboxImg').src = url; document.getElementById('lightbox').classList.add('open'); }
         function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
-        let selectedOrders = []
-        let expandedOrders = new Set()
 
-        function updateBulkAssign() {
-            const checkboxes = document.querySelectorAll('.order-checkbox:checked')
-            selectedOrders = Array.from(checkboxes).map(cb => ({
-                orderNumber: cb.value,
-                row: parseInt(cb.dataset.row)
-            }))
-            const bar = document.getElementById('bulkBar')
-            if (selectedOrders.length > 0) {
-                bar.style.display = 'flex'
-                document.getElementById('bulkCount').textContent = `เลือก ${selectedOrders.length} ออเดอร์`
-            } else {
-                bar.style.display = 'none'
+        /* ── Error Resolve Modal ── */
+        let selectedResolveType = null;
+
+        function openErrorResolveModal(order) {
+            currentOrder = order;
+            selectedResolveType = null;
+            document.querySelectorAll('.resolve-option').forEach(el => {
+                el.classList.remove('selected');
+                el.querySelector('input').checked = false;
+            });
+            document.getElementById('errorResolveManualInput').style.display = 'none';
+            document.getElementById('errorResolveNoteInput').style.display = 'none';
+            document.getElementById('errorManualAmount').value = '';
+            document.getElementById('errorNoteText').value = '';
+            document.getElementById('errorResolveMsg').innerHTML = '';
+            document.getElementById('confirmErrorResolveBtn').disabled = false;
+            document.getElementById('confirmErrorResolveBtn').textContent = 'ยืนยัน ✅';
+            document.getElementById('errorResolveOrderInfo').textContent = `${order.orderNumber} · ${order.customerName} · ${order.game}`;
+            document.getElementById('errorResolveModal').classList.add('open');
+        }
+
+        function closeErrorResolveModal() {
+            document.getElementById('errorResolveModal').classList.remove('open');
+            currentOrder = null;
+            selectedResolveType = null;
+        }
+
+        function selectResolveOption(type, label) {
+            selectedResolveType = type;
+            document.querySelectorAll('.resolve-option').forEach(el => {
+                el.classList.remove('selected');
+                el.querySelector('input').checked = false;
+            });
+            label.classList.add('selected');
+            label.querySelector('input').checked = true;
+            document.getElementById('errorResolveManualInput').style.display = type === 'manual' ? 'block' : 'none';
+            document.getElementById('errorResolveNoteInput').style.display = type === 'note' ? 'block' : 'none';
+        }
+
+        function buildLogEntry(action) {
+            const now = new Date().toLocaleString('th-TH', { timeZone: 'Asia/Bangkok' });
+            return `${now} | ${currentStaff.email}: ${action}`;
+        }
+
+        async function submitErrorResolve() {
+            if (!selectedResolveType) { document.getElementById('errorResolveMsg').innerHTML = '<div class="msg error">กรุณาเลือกการดำเนินการ</div>'; return; }
+
+            let logEntry = '';
+            let extraData = {};
+
+            if (selectedResolveType === 'revert') {
+                logEntry = buildLogEntry('แก้ไข Error → เปลี่ยน status กลับเป็น Slip Uploaded');
+            } else if (selectedResolveType === 'manual') {
+                const amount = parseFloat(document.getElementById('errorManualAmount').value);
+                if (!amount || amount <= 0) { document.getElementById('errorResolveMsg').innerHTML = '<div class="msg error">กรุณากรอกยอด</div>'; return; }
+                extraData.amount = amount;
+                logEntry = buildLogEntry(`แก้ไข Error → กรอกยอดเอง ฿${amount.toLocaleString()}`);
+            } else if (selectedResolveType === 'delete') {
+                if (!confirm(`ยืนยันเปลี่ยน ${currentOrder.orderNumber} เป็น Deleted?`)) return;
+                logEntry = buildLogEntry('แก้ไข Error → เปลี่ยน status เป็น Deleted');
+            } else if (selectedResolveType === 'note') {
+                const note = document.getElementById('errorNoteText').value.trim();
+                if (!note) { document.getElementById('errorResolveMsg').innerHTML = '<div class="msg error">กรุณากรอกหมายเหตุ</div>'; return; }
+                extraData.note = note;
+                logEntry = buildLogEntry(`แก้ไข Error → หมายเหตุ: ${note}`);
             }
+
+            const btn = document.getElementById('confirmErrorResolveBtn');
+            btn.disabled = true; btn.textContent = 'กำลังบันทึก...';
+
+            const res = await postJSON(SCRIPT_URL, {
+                action: 'resolveError',
+                data: {
+                    row: currentOrder.row,
+                    type: selectedResolveType,
+                    staffEmail: currentStaff.email,
+                    logEntry,
+                    existingLog: currentOrder.requestLog || '',
+                    ...extraData
+                }
+            });
+
+            if (res.success) { closeErrorResolveModal(); loadOrders(); }
+            else { document.getElementById('errorResolveMsg').innerHTML = '<div class="msg error">เกิดข้อผิดพลาด</div>'; btn.disabled = false; btn.textContent = 'ยืนยัน ✅'; }
         }
 
-        function updateBulkAssignBar() {
-            const bar = document.getElementById('bulkBar')
-            if (selectedOrders.length > 0) {
-                bar.style.display = 'flex'
-                document.getElementById('bulkCount').textContent = `เลือก ${selectedOrders.length} ออเดอร์`
-            } else {
-                bar.style.display = 'none'
-            }
-        }
-
-        function clearSelection() {
-            document.querySelectorAll('.order-checkbox').forEach(cb => cb.checked = false)
-            selectedOrders = []
-            updateBulkAssignBar()
-        }
-
-        async function openBulkAssignModal() {
-            if (!selectedOrders.length) return
-            currentOrder = null
-            selectedAgent = null
-            document.getElementById('confirmAssignBtn').disabled = false
-            document.getElementById('confirmAssignBtn').textContent = 'มอบหมาย ✅'
-            document.getElementById('assignOrderInfo').textContent = `มอบหมาย ${selectedOrders.length} ออเดอร์พร้อมกัน`
-            document.getElementById('assignMsg').innerHTML = ''
-
-            const res = await fetchJSON(`${SCRIPT_URL}?action=getAgents`)
-            agentList = res.agents || []
-            if (currentStaff.role === 'super_admin' && !agentList.find(a => a.email === currentStaff.email)) {
-                agentList = [{ name: (currentStaff.name || currentStaff.email) + ' (ฉัน)', email: currentStaff.email }, ...agentList]
-            }
-            document.getElementById('agentList').innerHTML = agentList.map(a => `
-                <div class="agent-item" onclick="selectAgent('${a.email}', this)">${a.name} <span style="color:var(--muted);font-size:11px;">${a.email}</span></div>
-              `).join('') || '<div style="color:var(--muted);">ไม่มี Agent</div>'
-
-            document.getElementById('assignModal').classList.add('open')
-        }
-
-        // แก้ submitAssign ให้รองรับ bulk
-        async function submitAssign() {
-            if (!selectedAgent) { document.getElementById('assignMsg').innerHTML = '<div class="msg error">กรุณาเลือก Agent</div>'; return; }
-            const btn = document.getElementById('confirmAssignBtn'); btn.disabled = true; btn.textContent = 'กำลังมอบหมาย...';
-
-            const ordersToAssign = selectedOrders.length > 0 ? selectedOrders : [{ row: currentOrder.row, orderNumber: currentOrder.orderNumber }]
-
-            try {
-                await Promise.all(ordersToAssign.map(o => {
-                    const order = allOrders.find(a => a.orderNumber === o.orderNumber) || currentOrder
-                    return postJSON(SCRIPT_URL, {
-                        action: 'assignAgent',
-                        data: {
-                            row: o.row,
-                            agentEmail: selectedAgent,
-                            assignedTo: order?.assignedTo || '',
-                            priceConfirmedBy: order?.priceConfirmedBy || '',
-                            slipConfirmedBy: order?.slipConfirmedBy || '',
-                            requestLog: order?.requestLog || ''
-                        }
-                    })
-                }))
-                const agentInfo = agentList.find(a => a.email === selectedAgent)
-                ordersToAssign.forEach(o => {
-                    const order = allOrders.find(a => a.orderNumber === o.orderNumber)
-                    if (order) {
-                        order.status = 'Assigned'
-                        order.agentEmail = selectedAgent
-                        if (agentInfo) order.assignedTo = agentInfo.name
-                    }
-                })
-                closeAssignModal()
-                clearSelection()
-                updateBadges()
-                renderOrders()
-            } catch {
-                document.getElementById('assignMsg').innerHTML = '<div class="msg error">เกิดข้อผิดพลาด</div>'
-                btn.disabled = false
-                btn.textContent = 'มอบหมาย ✅'
-            }
-        }
+        /* ── Auto refresh ── */
         setInterval(() => { if (currentStaff) loadOrders(); }, 5000);
     </script>
 </body>
