@@ -494,6 +494,7 @@
     color: var(--gray);
     line-height: 1.6;
     margin-bottom: 12px;
+    white-space: pre-wrap;
 }
 
 .pkg-popup-price {
@@ -638,4 +639,38 @@
   .pkg-icon {
     height: 80px;
   }
+}
+
+/* Sold out overlay */
+.pkg-card {
+  position: relative;
+  overflow: hidden;
+}
+.pkg-card-soldout {
+  opacity: 0.7;
+}
+.pkg-soldout-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.pkg-soldout-overlay span {
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  background: rgba(229, 62, 62, 0.8);
+  padding: 6px 16px;
+  border-radius: 4px;
+}
+.pkg-btn-soldout {
+  background: var(--border) !important;
+  color: var(--gray) !important;
+  cursor: not-allowed !important;
+  opacity: 0.6;
 }

@@ -36,37 +36,47 @@ function PkgDetailPopup({ pkg, onClose }) {
 }
 
 function PkgCard({ pkg, onAdd }) {
-  const [showDetail, setShowDetail] = useState(false)
+    const [showDetail, setShowDetail] = useState(false)
+    const isAvailable = pkg.available !== false
 
-  return (
-    <>
-      <div className="pkg-card">
-        <div className="pkg-card-header">
-          <span className="pkg-name">{pkg.pkg}</span>
-          {(pkg.description || pkg.imageUrl) && (
-            <button className="pkg-info-btn" onClick={() => setShowDetail(true)}>?</button>
-          )}
-        </div>
-        {pkg.imageUrl ? (
-          <img src={proxyImg(pkg.imageUrl)} alt={pkg.pkg} className="pkg-icon"
-            onError={e => e.target.style.display = 'none'} />
-        ) : (
-          <div className="pkg-icon-placeholder">🎮</div>
-        )}
-        <div className="pkg-prices">
-          {pkg.oldPrice > 0 && (
-            <span className="pkg-old-price">฿{Number(pkg.oldPrice).toLocaleString()}</span>
-          )}
-          <span className="pkg-price">฿{Number(pkg.price).toLocaleString()}</span>
-        </div>
-        <button className="pkg-btn" onClick={() => onAdd(pkg)}>เพิ่มลงตะกร้า</button>
-      </div>
+    return (
+        <>
+            <div className={`pkg-card ${!isAvailable ? 'pkg-card-soldout' : ''}`}>
+                <div className="pkg-card-header">
+                    <span className="pkg-name">{pkg.pkg}</span>
+                    {(pkg.description || pkg.imageUrl) && (
+                        <button className="pkg-info-btn" onClick={() => setShowDetail(true)}>?</button>
+                    )}
+                </div>
+                {pkg.imageUrl ? (
+                    <img src={proxyImg(pkg.imageUrl)} alt={pkg.pkg} className="pkg-icon"
+                        onError={e => e.target.style.display = 'none'} />
+                ) : (
+                    <div className="pkg-icon-placeholder">🎮</div>
+                )}
+                <div className="pkg-prices">
+                    {pkg.oldPrice > 0 && (
+                        <span className="pkg-old-price">฿{Number(pkg.oldPrice).toLocaleString()}</span>
+                    )}
+                    <span className="pkg-price">฿{Number(pkg.price).toLocaleString()}</span>
+                </div>
+                {isAvailable ? (
+                    <button className="pkg-btn" onClick={() => onAdd(pkg)}>เพิ่มลงตะกร้า</button>
+                ) : (
+                    <button className="pkg-btn pkg-btn-soldout" disabled>หมดสต็อก</button>
+                )}
 
-      {showDetail && (
-        <PkgDetailPopup pkg={pkg} onClose={() => setShowDetail(false)} />
-      )}
-    </>
-  )
+                {!isAvailable && (
+                    <div className="pkg-soldout-overlay">
+                        <span>หมดสต็อก</span>
+                    </div>
+                )}
+            </div>
+            {showDetail && (
+                <PkgDetailPopup pkg={pkg} onClose={() => setShowDetail(false)} />
+            )}
+        </>
+    )
 }
 
 export default function PackageGrid({ packages, onAdd }) {

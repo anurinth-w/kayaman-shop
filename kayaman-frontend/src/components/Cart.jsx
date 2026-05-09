@@ -3,14 +3,14 @@ import ConfirmModal from './ConfirmModal'
 import AlertModal from './AlertModal'
 import { sanitizeForm } from '../utils/sanitize'
 
-export default function Cart({ cart, total, fields, options, game, onRemove, onUpdateQty, onClear, workerUrl }) {
+export default function Cart({ cart, total, fields, options, game, onRemove, onUpdateQty, onClear, workerUrl, orderFrom }) {
   const [formData, setFormData] = useState({})
   const [showConfirm, setShowConfirm] = useState(false)
   const [otherImages, setOtherImages] = useState({})
   const [alert, setAlert] = useState(null)
   const fileRefs = useRef({})
 
-  const skipFields = ['orderFrom', 'game']
+  const skipFields = ['game']
   const visibleFields = fields.filter(f => !skipFields.includes(f['Field']))
 
   const showAlert = (msg) => setAlert(msg)
@@ -56,7 +56,9 @@ export default function Cart({ cart, total, fields, options, game, onRemove, onU
   const handleCheckout = () => {
     if (cart.length === 0) return showAlert('กรุณาเลือกแพ็คเกจก่อน')
     const hasOther = cart.some(i => i.isOther)
-    if (hasOther && !otherImages['แพ็คเกจอื่นๆ']) return showAlert('กรุณาอัปโหลดรูปแพ็คเกจอื่นๆ')
+    const otherItems = cart.filter(i => i.isOther)
+    const missingImage = otherItems.find(i => !otherImages[i.pkg])
+    if (missingImage) return showAlert('กรุณาอัปโหลดรูปแพ็คเกจอื่นๆ ให้ครบทุกรายการ')
     const required = visibleFields.filter(f => f['Required'] === 'Yes')
     const missing = required.find(f => !formData[f['Field']]?.trim())
     if (missing) return showAlert(`กรุณากรอก ${missing['Label']}`)
@@ -76,7 +78,7 @@ export default function Cart({ cart, total, fields, options, game, onRemove, onU
             {cart.map((item, i) => (
               <div key={i}>
                 <div className="cart-item">
-                  <span className="cart-item-name">{item.pkg}</span>
+                  <span className="cart-item-name">{item.displayName || item.pkg}</span>
                   <div className="cart-item-controls">
                     <button onClick={() => onUpdateQty(item.pkg, item.qty - 1)}>−</button>
                     <input
@@ -169,6 +171,7 @@ export default function Cart({ cart, total, fields, options, game, onRemove, onU
           game={game}
           workerUrl={workerUrl}
           otherImages={otherImages}
+          orderFrom={orderFrom}
           onClose={() => setShowConfirm(false)}
         />
       )}

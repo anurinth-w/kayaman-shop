@@ -12,6 +12,7 @@ export default function Payment() {
     const navigate = useNavigate()
     const { state } = useLocation()
     const game = state?.game || ''
+    const totalPrice = state?.totalPrice || 0
     const [paymentMethods, setPaymentMethods] = useState([])
     const [selectedMethod, setSelectedMethod] = useState(null)
     const [slipImage, setSlipImage] = useState(null)
@@ -89,6 +90,10 @@ export default function Payment() {
                     <div className="payment-order">
                         <span className="payment-order-label">เลขออเดอร์</span>
                         <span className="payment-order-number">{orderNumber}</span>
+                    </div>
+                    <div className="payment-amount">
+                        <span className="payment-amount-label">ยอดที่ต้องโอน</span>
+                        <span className="payment-amount-value">฿{Number(totalPrice).toLocaleString()}</span>
                     </div>
 
                     <div className="payment-section">

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayaman — ประวัติออเดอร์</title>
+    <script src="config.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <style>
+        :root {
+            --bg: #0f1014;
+            --surface: #16181d;
+            --surface2: #1e2028;
+            --border: #2a2d36;
+            --text: #e8e8e8;
+            --muted: #666;
+            --danger: #ff4444;
+            --success: #44cc88;
+            --warning: #ffaa00;
+            --info: #4488ff
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0 }
+        body { background: var(--bg); color: var(--text); font-family: sans-serif; font-size: 14px; min-height: 100vh }
+
+        .header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100
+        }
+        .header-left { display: flex; align-items: center; gap: 16px }
+        .header-logo { font-size: 13px; font-weight: 700; letter-spacing: 3px }
+        .header-logo span { color: var(--warning) }
+        .btn-back {
+            font-size: 12px; color: var(--muted); background: none;
+            border: 1px solid var(--border); padding: 5px 10px;
+            border-radius: 6px; cursor: pointer; text-decoration: none; display: inline-block
+        }
+        .btn-back:hover { color: var(--text) }
+        .btn-logout {
+            font-size: 12px; color: var(--muted); background: none;
+            border: 1px solid var(--border); padding: 5px 10px;
+            border-radius: 6px; cursor: pointer
+        }
+
+        .content { padding: 20px; max-width: 1400px; margin: 0 auto }
+
+        .filter-bar {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 20px
+        }
+        .filter-bar label { font-size: 12px; color: var(--muted) }
+        .filter-bar input[type="date"] {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 6px 10px;
+            color: var(--text);
+            font-size: 13px;
+            cursor: pointer
+        }
+        .filter-bar input[type="text"] {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 6px 10px;
+            color: var(--text);
+            font-size: 13px;
+            width: 200px
+        }
+        .filter-bar input[type="text"]::placeholder { color: var(--muted) }
+        .btn-search {
+            background: var(--info);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 7px 18px;
+            font-size: 13px;
+            cursor: pointer
+        }
+        .btn-search:hover { opacity: .85 }
+        .filter-shortcuts { display: flex; gap: 8px }
+        .shortcut-btn {
+            font-size: 11px; padding: 4px 10px; border-radius: 6px;
+            border: 1px solid var(--border); background: none;
+            color: var(--muted); cursor: pointer
+        }
+        .shortcut-btn:hover, .shortcut-btn.active { background: var(--surface2); color: var(--text); border-color: var(--text) }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px
+        }
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 14px 16px
+        }
+        .stat-label { font-size: 11px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px }
+        .stat-value { font-size: 22px; font-weight: 700 }
+        .stat-value.green { color: var(--success) }
+        .stat-value.yellow { color: var(--warning) }
+        .stat-value.blue { color: var(--info) }
+
+        .table-wrap {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden
+        }
+        .table-header {
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border);
+            font-size: 13px;
+            color: var(--muted);
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+        table { width: 100%; border-collapse: collapse }
+        thead th {
+            text-align: left;
+            padding: 10px 14px;
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border);
+            white-space: nowrap;
+            cursor: pointer;
+            user-select: none
+        }
+        thead th:hover { color: var(--text) }
+        thead th.sort-asc::after { content: ' ↑' }
+        thead th.sort-desc::after { content: ' ↓' }
+        tbody tr { border-bottom: 1px solid var(--border); transition: background .1s }
+        tbody tr:last-child { border-bottom: none }
+        tbody tr:hover { background: var(--surface2) }
+        tbody td { padding: 10px 14px; font-size: 13px; white-space: nowrap }
+        .td-date { color: var(--muted); font-size: 12px }
+        .td-order { font-family: monospace; font-weight: 700 }
+        .td-price { font-weight: 600; color: var(--success) }
+        .td-agent { font-size: 11px; color: var(--muted) }
+
+        .status-badge {
+            font-size: 10px; padding: 2px 8px; border-radius: 20px;
+            font-weight: 500; white-space: nowrap; display: inline-block
+        }
+        .status-Completed { background: #002a1a; color: var(--success); border: 1px solid var(--success) }
+        .status-Pending-Review { background: #2a1a00; color: var(--warning); border: 1px solid var(--warning) }
+        .status-Slip-Uploaded { background: #001a2a; color: var(--info); border: 1px solid var(--info) }
+        .status-Processing { background: #001a2a; color: var(--info); border: 1px solid var(--info) }
+        .status-Assigned { background: #1a2a00; color: var(--success); border: 1px solid var(--success) }
+        .status-In-Progress { background: #1a1000; color: #ffcc44; border: 1px solid #ffcc44 }
+        .status-Error { background: #2a0000; color: var(--danger); border: 1px solid var(--danger) }
+        .status-Need-Info { background: #2a002a; color: #cc88ff; border: 1px solid #cc88ff }
+        .status-Waiting-for-Transfer { background: #002a1a; color: var(--success); border: 1px solid var(--success) }
+
+        .empty { text-align: center; padding: 60px 20px; color: var(--muted) }
+        .loading { text-align: center; padding: 60px 20px; color: var(--muted) }
+        .spinner {
+            width: 24px; height: 24px; border: 2px solid var(--border);
+            border-top-color: var(--text); border-radius: 50%;
+            animation: spin .7s linear infinite; margin: 0 auto 12px
+        }
+        @keyframes spin { to { transform: rotate(360deg) } }
+
+        #accessDenied {
+            display: none; align-items: center; justify-content: center;
+            min-height: 100vh; flex-direction: column; gap: 12px;
+            color: var(--muted)
+        }
+    </style>
+</head>
+<body>
+
+<div id="accessDenied">
+    <div style="font-size:32px">🚫</div>
+    <div>ไม่มีสิทธิ์เข้าถึงหน้านี้</div>
+    <a href="index.html" class="btn-back">← กลับหน้าหลัก</a>
+</div>
+
+<div id="mainApp" style="display:none">
+    <div class="header">
+        <div class="header-left">
+            <div class="header-logo">KAYA<span>MAN</span></div>
+            <a href="index.html" class="btn-back">← หน้าหลัก</a>
+        </div>
+        <button class="btn-logout" onclick="logout()">ออกจากระบบ</button>
+    </div>
+
+    <div class="content">
+        <div class="filter-bar">
+            <div>
+                <div style="font-size:11px;color:var(--muted);margin-bottom:6px;">ตั้งแต่วันที่</div>
+                <input type="date" id="startDate">
+            </div>
+            <div>
+                <div style="font-size:11px;color:var(--muted);margin-bottom:6px;">ถึงวันที่</div>
+                <input type="date" id="endDate">
+            </div>
+            <div>
+                <div style="font-size:11px;color:var(--muted);margin-bottom:6px;">ค้นหา</div>
+                <input type="text" id="searchInput" placeholder="เลขออเดอร์ / ชื่อลูกค้า / เกม" oninput="applyFilter()">
+            </div>
+            <div style="align-self:flex-end">
+                <button class="btn-search" onclick="loadHistory()">ดูข้อมูล</button>
+            </div>
+            <div style="align-self:flex-end">
+                <div class="filter-shortcuts">
+                    <button class="shortcut-btn" onclick="setRange('today')">วันนี้</button>
+                    <button class="shortcut-btn" onclick="setRange('week')">7 วัน</button>
+                    <button class="shortcut-btn active" onclick="setRange('month')">เดือนนี้</button>
+                    <button class="shortcut-btn" onclick="setRange('all')">ทั้งหมด</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-row" id="statsRow">
+            <div class="stat-card"><div class="stat-label">ออเดอร์ทั้งหมด</div><div class="stat-value blue" id="statTotal">—</div></div>
+            <div class="stat-card"><div class="stat-label">รายได้รวม</div><div class="stat-value green" id="statRevenue">—</div></div>
+            <div class="stat-card"><div class="stat-label">เสร็จสิ้น</div><div class="stat-value green" id="statCompleted">—</div></div>
+            <div class="stat-card"><div class="stat-label">กำลังดำเนินการ</div><div class="stat-value yellow" id="statInProgress">—</div></div>
+            <div class="stat-card"><div class="stat-label">รอการชำระ</div><div class="stat-value yellow" id="statWaiting">—</div></div>
+        </div>
+
+        <div class="table-wrap">
+            <div class="table-header">
+                <span id="tableCount">—</span>
+                <span style="font-size:11px;">คลิกหัวตาราง เพื่อเรียงลำดับ</span>
+            </div>
+            <div id="tableBody">
+                <div class="loading"><div class="spinner"></div>กำลังโหลด...</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const SCRIPT_URL = 'https://kayaman-api.skizztv.workers.dev';
+    firebase.initializeApp(FIREBASE_CONFIG);
+    const auth = firebase.auth();
+
+    let allOrders = [];
+    let sortCol = 'date';
+    let sortDir = 'desc';
+
+    auth.onAuthStateChanged(async user => {
+        if (!user) { window.location.href = 'index.html'; return; }
+        const res = await fetch(`${SCRIPT_URL}?action=verifyStaff&email=${encodeURIComponent(user.email)}`).then(r => r.json());
+        if (!res.success || res.role !== 'super_admin') {
+            document.getElementById('accessDenied').style.display = 'flex';
+            return;
+        }
+        document.getElementById('mainApp').style.display = 'block';
+        setRange('month');
+        loadHistory();
+    });
+
+    function logout() { auth.signOut().then(() => window.location.href = 'index.html'); }
+
+    function toLocalDateStr(d) {
+        return d.getFullYear() + '-' +
+            String(d.getMonth() + 1).padStart(2, '0') + '-' +
+            String(d.getDate()).padStart(2, '0');
+    }
+
+    function setRange(range) {
+        document.querySelectorAll('.shortcut-btn').forEach(b => b.classList.remove('active'));
+        event?.target?.classList.add('active');
+        const today = new Date();
+        const end = toLocalDateStr(today);
+        let start;
+        if (range === 'today') {
+            start = end;
+        } else if (range === 'week') {
+            const d = new Date(today); d.setDate(d.getDate() - 6);
+            start = toLocalDateStr(d);
+        } else if (range === 'month') {
+            start = toLocalDateStr(new Date(today.getFullYear(), today.getMonth(), 1));
+        } else {
+            start = '2020-01-01';
+        }
+        document.getElementById('startDate').value = start;
+        document.getElementById('endDate').value = end;
+    }
+
+    async function loadHistory() {
+        document.getElementById('tableBody').innerHTML = '<div class="loading"><div class="spinner"></div>กำลังโหลด...</div>';
+        document.getElementById('statTotal').textContent = '—';
+        document.getElementById('statRevenue').textContent = '—';
+        document.getElementById('statCompleted').textContent = '—';
+        document.getElementById('statInProgress').textContent = '—';
+        document.getElementById('statWaiting').textContent = '—';
+
+        const start = document.getElementById('startDate').value;
+        const end = document.getElementById('endDate').value;
+        const params = new URLSearchParams({ action: 'getOrderHistory' });
+        if (start) params.set('startDate', start);
+        if (end) params.set('endDate', end);
+
+        const res = await fetch(`${SCRIPT_URL}?${params}`).then(r => r.json());
+        if (!res.success) {
+            document.getElementById('tableBody').innerHTML = '<div class="empty">เกิดข้อผิดพลาดในการโหลดข้อมูล</div>';
+            return;
+        }
+        allOrders = res.orders;
+        applyFilter();
+    }
+
+    function applyFilter() {
+        const q = document.getElementById('searchInput').value.toLowerCase().trim();
+        const filtered = q ? allOrders.filter(o =>
+            (o.orderNumber || '').toLowerCase().includes(q) ||
+            (o.customerName || '').toLowerCase().includes(q) ||
+            (o.game || '').toLowerCase().includes(q)
+        ) : allOrders;
+        renderTable(filtered);
+    }
+
+    function renderTable(orders) {
+        const sorted = [...orders].sort((a, b) => {
+            let va = a[sortCol] || '', vb = b[sortCol] || '';
+            if (sortCol === 'orderPrice') { va = Number(String(va).replace(/,/g, '')) || 0; vb = Number(String(vb).replace(/,/g, '')) || 0; }
+            if (sortCol === 'date') { va = new Date(va).getTime() || 0; vb = new Date(vb).getTime() || 0; }
+            if (va < vb) return sortDir === 'asc' ? -1 : 1;
+            if (va > vb) return sortDir === 'asc' ? 1 : -1;
+            return 0;
+        });
+
+        const totalRevenue = orders.filter(o => o.status === 'Completed').reduce((s, o) => s + (Number(String(o.orderPrice || 0).replace(/,/g, '')) || 0), 0);
+        document.getElementById('statTotal').textContent = orders.length.toLocaleString();
+        document.getElementById('statRevenue').textContent = '฿' + totalRevenue.toLocaleString();
+        document.getElementById('statCompleted').textContent = orders.filter(o => o.status === 'Completed').length;
+        document.getElementById('statInProgress').textContent = orders.filter(o => ['Processing', 'Assigned', 'In Progress'].includes(o.status)).length;
+        document.getElementById('statWaiting').textContent = orders.filter(o => ['Pending Review', 'Slip Uploaded', 'Waiting for Transfer'].includes(o.status)).length;
+        document.getElementById('tableCount').textContent = `${sorted.length.toLocaleString()} ออเดอร์`;
+
+        if (!sorted.length) {
+            document.getElementById('tableBody').innerHTML = '<div class="empty">ไม่พบออเดอร์ในช่วงเวลาที่เลือก</div>';
+            return;
+        }
+
+        const cols = [
+            { key: 'date', label: 'วันที่' },
+            { key: 'orderNumber', label: 'เลขออเดอร์' },
+            { key: 'customerName', label: 'ลูกค้า' },
+            { key: 'game', label: 'เกม' },
+            { key: 'package', label: 'แพ็คเกจ' },
+            { key: 'orderPrice', label: 'ราคา' },
+            { key: 'status', label: 'สถานะ' },
+            { key: 'agentEmail', label: 'Agent' },
+        ];
+
+        const thead = `<thead><tr>${cols.map(c => `<th onclick="sortBy('${c.key}')" class="${sortCol === c.key ? 'sort-' + sortDir : ''}">${c.label}</th>`).join('')}</tr></thead>`;
+
+        const tbody = '<tbody>' + sorted.map(o => {
+            const d = new Date(o.date);
+            const dateStr = isNaN(d) ? '' : d.toLocaleDateString('th-TH', { day: '2-digit', month: 'short', year: '2-digit', hour: '2-digit', minute: '2-digit' });
+            const sc = 'status-' + (o.status || '').replace(/[\s:]+/g, '-');
+            const price = Number(String(o.orderPrice || 0).replace(/,/g, ''));
+            return `<tr>
+                <td class="td-date">${dateStr}</td>
+                <td class="td-order">${o.orderNumber || ''}</td>
+                <td>${o.customerName || ''}</td>
+                <td>${o.game || ''}</td>
+                <td style="max-width:180px;overflow:hidden;text-overflow:ellipsis">${o.package || ''}</td>
+                <td class="td-price">${price ? '฿' + price.toLocaleString() : '—'}</td>
+                <td><span class="status-badge ${sc}">${o.status || ''}</span></td>
+                <td class="td-agent">${o.agentEmail || '—'}</td>
+            </tr>`;
+        }).join('') + '</tbody>';
+
+        document.getElementById('tableBody').innerHTML = `<table>${thead}${tbody}</table>`;
+    }
+
+    function sortBy(col) {
+        if (sortCol === col) sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+        else { sortCol = col; sortDir = col === 'date' ? 'desc' : 'asc'; }
+        applyFilter();
+    }
+</script>
+</body>
+</html>

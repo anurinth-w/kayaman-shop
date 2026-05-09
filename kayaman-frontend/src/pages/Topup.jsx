@@ -29,6 +29,7 @@ export default function Topup() {
     console.log('state:', state)
     const [data, setData] = useState(null)
     const [cart, setCart] = useState([])
+    const [orderFrom, setOrderFrom] = useState('')
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
@@ -39,12 +40,16 @@ export default function Topup() {
     }, [])
 
     const addToCart = (pkg) => {
-        setCart(prev => {
-            const existing = prev.find(i => i.pkg === pkg.pkg)
-            if (existing) return prev.map(i => i.pkg === pkg.pkg ? { ...i, qty: i.qty + 1 } : i)
-            return [...prev, { ...pkg, qty: 1 }]
-        })
-    }
+    setCart(prev => {
+        if (pkg.isOther) {
+            const id = `other_${Date.now()}`
+            return [...prev, { ...pkg, pkg: id, displayName: 'แพ็คเกจอื่นๆ', qty: 1, id }]
+        }
+        const existing = prev.find(i => i.pkg === pkg.pkg)
+        if (existing) return prev.map(i => i.pkg === pkg.pkg ? { ...i, qty: i.qty + 1 } : i)
+        return [...prev, { ...pkg, qty: 1 }]
+    })
+}
 
     const removeFromCart = (pkgName) => setCart(prev => prev.filter(i => i.pkg !== pkgName))
 
@@ -108,6 +113,7 @@ export default function Topup() {
                         onRemove={removeFromCart}
                         onUpdateQty={updateQty}
                         onClear={clearCart}
+                        orderFrom={orderFrom}
                         workerUrl={WORKER_URL}
                     />
                 </div>

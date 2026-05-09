@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-export default function ConfirmModal({ cart, total, formData, fields, game, workerUrl, otherImages, onClose }) {
+export default function ConfirmModal({ cart, total, formData, fields, game, workerUrl, otherImages, orderFrom, onClose }) {
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
 
@@ -15,6 +15,7 @@ export default function ConfirmModal({ cart, total, formData, fields, game, work
             const payload = {
                 action: 'submitOrder',
                 data: {
+                    orderFrom: formData['Order From'] || 'direct',
                     game,
                     packages: cart.map(i => ({ pkg: i.pkg, price: i.price, qty: i.qty })),
                     packageSummary,
@@ -57,7 +58,7 @@ export default function ConfirmModal({ cart, total, formData, fields, game, work
 
                 navigate(`/pending/${orderNumber}`, { state: { game } })
             } else {
-                navigate(`/payment/${orderNumber}`, { state: { game } })
+                navigate(`/payment/${orderNumber}`, { state: { game, totalPrice: total } })
             }
 
         } catch {

@@ -10,6 +10,8 @@ export default function Pending() {
   const { state } = useLocation()
   const game = state?.game || ''
   const [status, setStatus] = useState('Pending Review')
+  const [totalPrice, setTotalPrice] = useState(0)
+
 
   useEffect(() => {
     const interval = setInterval(async () => {
@@ -19,12 +21,12 @@ export default function Pending() {
         if (data.success) {
           setStatus(data.status)
           if (data.status === 'Waiting for Transfer') {
+            setTotalPrice(Number(String(data.totalPrice || 0).replace(/,/g, '')))  // เพิ่มบรรทัดนี้
             clearInterval(interval)
           }
         }
-      } catch {}
-    }, 10000) // เช็คทุก 10 วินาที
-
+      } catch { }
+    }, 10000)
     return () => clearInterval(interval)
   }, [orderNumber])
 
@@ -42,7 +44,7 @@ export default function Pending() {
           <div className="pending-icon">⏳</div>
 
           <h2 className="pending-title">รอพนักงานยืนยันราคา</h2>
-          <p className="pending-sub">ทีมงานกำลังตรวจสอบแพ็คเกจของคุณ<br/>กรุณารอสักครู่นะครับ ใช้ใจรอ มากกว่าใจร้อน 🙏</p>
+          <p className="pending-sub">ทีมงานกำลังตรวจสอบแพ็คเกจของคุณ<br />กรุณารอสักครู่นะครับ ใช้ใจรอ มากกว่าใจร้อน 🙏</p>
 
           <div className="pending-order">
             <span className="pending-order-label">เลขออเดอร์</span>
@@ -67,7 +69,7 @@ export default function Pending() {
           </div>
 
           {status === 'Waiting for Transfer' ? (
-            <Link to={`/payment/${orderNumber}`} state={{ game }} className="pending-btn">
+            <Link to={`/payment/${orderNumber}`} state={{ game, totalPrice }} className="pending-btn">
               ไปหน้าชำระเงิน →
             </Link>
           ) : (

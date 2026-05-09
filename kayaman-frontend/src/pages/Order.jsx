@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import Breadcrumb from '../components/Breadcrumb'
 import AlertModal from '../components/AlertModal'
 import '../styles/order.css'
+import { Link } from 'react-router-dom'
 
 const WORKER_URL = 'https://kayaman-api.skizztv.workers.dev'
 
@@ -138,9 +139,9 @@ export default function Order() {
                         {order.status === 'Waiting for Transfer' && (
                             <div className="order-action">
                                 <p className="order-action-desc">ออเดอร์นี้รอการชำระเงิน กรุณาชำระเงินและอัปโหลดสลิป</p>
-                                <a href={`/payment/${order.orderNumber}`} className="order-action-btn">
+                                <Link to={`/payment/${order.orderNumber}`} state={{ game: order.game, totalPrice: Number(String(order.totalPrice || 0).replace(/,/g, '')) }} className="order-action-btn">
                                     ไปหน้าชำระเงิน →
-                                </a>
+                                </Link>
                             </div>
                         )}
 
