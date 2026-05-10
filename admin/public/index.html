@@ -24,206 +24,786 @@
             --info: #4488ff
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0 }
-
-        body { background: var(--bg); color: var(--text); font-family: sans-serif; font-size: 14px; min-height: 100vh }
-
-        .login-page { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px }
-
-        .login-box { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 40px; width: 100%; max-width: 380px; text-align: center }
-
-        .login-logo { font-size: 20px; font-weight: 700; letter-spacing: 4px; margin-bottom: 8px }
-
-        .login-sub { font-size: 12px; color: var(--muted); letter-spacing: 2px; margin-bottom: 32px }
-
-        .btn-google { width: 100%; background: #fff; color: #333; border: none; border-radius: 8px; padding: 12px; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px }
-
-        .btn-google img { width: 20px; height: 20px }
-
-        .header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100 }
-
-        .header-logo { font-size: 13px; font-weight: 700; letter-spacing: 3px }
-
-        .header-logo span { color: var(--warning) }
-
-        .header-right { display: flex; align-items: center; gap: 12px }
-
-        .staff-name { font-size: 12px; color: var(--muted) }
-
-        .role-badge { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 500 }
-
-        .role-super_admin { background: #2a1a00; color: var(--warning); border: 1px solid var(--warning) }
-
-        .role-admin { background: #001a2a; color: var(--info); border: 1px solid var(--info) }
-
-        .role-staff { background: #1a2a00; color: var(--success); border: 1px solid var(--success) }
-
-        .role-agent { background: #2a002a; color: #cc88ff; border: 1px solid #cc88ff }
-
-        .btn-logout { font-size: 12px; color: var(--muted); background: none; border: 1px solid var(--border); padding: 5px 10px; border-radius: 6px; cursor: pointer }
-
-        .tabs { display: flex; gap: 4px; padding: 12px 20px; background: var(--surface); border-bottom: 1px solid var(--border); overflow-x: auto }
-
-        .tab { font-size: 12px; padding: 6px 14px; border-radius: 6px; cursor: pointer; border: 1px solid transparent; color: var(--muted); white-space: nowrap }
-
-        .tab.active { background: var(--surface2); border-color: var(--border); color: var(--text) }
-
-        .tab-badge { display: inline-block; background: var(--danger); color: #fff; font-size: 10px; padding: 1px 5px; border-radius: 10px; margin-left: 5px }
-
-        .content { padding: 20px; max-width: 1200px; margin: 0 auto }
-
-        .order-grid { display: grid; gap: 12px }
-
-        .order-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; cursor: pointer }
-
-        .order-card:hover { border-color: var(--accent) }
-
-        .order-header { padding: 12px 16px; display: flex; justify-content: space-between; align-items: center }
-
-        .order-header-left { display: flex; align-items: center; gap: 12px }
-
-        .order-number { font-family: monospace; font-size: 13px; font-weight: 700 }
-
-        .order-meta { font-size: 12px; color: var(--muted) }
-
-        .status-badge { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 500; white-space: nowrap }
-
-        .status-Pending-Review { background: #2a1a00; color: var(--warning); border: 1px solid var(--warning) }
-        .status-Slip-Uploaded { background: #001a2a; color: var(--info); border: 1px solid var(--info) }
-        .status-Error { background: #2a0000; color: var(--danger); border: 1px solid var(--danger) }
-        .status-Need-Info { background: #2a002a; color: #cc88ff; border: 1px solid #cc88ff }
-        .status-Waiting-for-Transfer { background: #002a1a; color: var(--success); border: 1px solid var(--success) }
-        .status-Processing { background: #001a2a; color: var(--info); border: 1px solid var(--info) }
-        .status-Assigned { background: #1a2a00; color: var(--success); border: 1px solid var(--success) }
-        .status-In-Progress { background: #1a1000; color: #ffcc44; border: 1px solid #ffcc44 }
-
-        .info-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-bottom: 14px }
-
-        .info-item label { font-size: 10px; letter-spacing: 1px; color: var(--muted); text-transform: uppercase; display: block; margin-bottom: 3px }
-
-        .info-item span { font-size: 13px }
-
-        .sensitive { color: var(--warning) }
-
-        .img-row { display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap }
-
-        .img-thumb { width: 120px; height: 120px; object-fit: contain; border-radius: 8px; border: 1px solid var(--border); background: var(--surface2); cursor: pointer }
-
-        .img-label { font-size: 11px; color: var(--muted); text-align: center; margin-top: 4px }
-
-        .action-row { display: flex; gap: 8px; flex-wrap: wrap }
-
-        .btn-confirm { padding: 8px 16px; border-radius: 8px; font-size: 12px; font-weight: 500; cursor: pointer; border: none }
-
-        .btn-confirm-price { background: var(--warning); color: #000 }
-        .btn-confirm-slip { background: var(--success); color: #000 }
-        .btn-request-info { background: var(--surface2); color: var(--text); border: 1px solid var(--border) !important }
-        .btn-assign { background: var(--info); color: #fff }
-        .btn-accept { background: #ffcc44; color: #000 }
-        .btn-complete { background: var(--success); color: #000 }
-
-        .btn-confirm:disabled { opacity: .4; cursor: not-allowed }
-
-        .loading { text-align: center; padding: 60px 20px; color: var(--muted) }
-
-        .spinner { width: 24px; height: 24px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin .8s linear infinite; margin: 0 auto 12px }
-
-        @keyframes spin { to { transform: rotate(360deg) } }
-
-        .empty { text-align: center; padding: 60px 20px; color: var(--muted); font-size: 13px }
-
-        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.9); z-index: 200; align-items: center; justify-content: center; padding: 20px }
-
-        .modal.open { display: flex }
-
-        .modal-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; width: 100%; max-width: 440px; max-height: 90vh; overflow-y: auto }
-
-        .modal-title { font-size: 13px; font-weight: 700; margin-bottom: 16px; color: var(--highlight) }
-
-        .modal-slip { width: 100%; max-height: 300px; object-fit: contain; border-radius: 8px; margin-bottom: 16px; background: var(--surface2) }
-
-        .field { margin-bottom: 14px }
-
-        .field label { display: block; font-size: 11px; letter-spacing: 1px; color: var(--muted); margin-bottom: 5px; text-transform: uppercase }
-
-        .field input, .field select { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; color: var(--text); font-size: 14px; outline: none }
-
-        .modal-price-display { background: var(--surface2); border-radius: 8px; padding: 12px 16px; display: flex; justify-content: space-between; margin-bottom: 14px }
-
-        .modal-price-label { font-size: 12px; color: var(--muted) }
-
-        .modal-price-value { font-family: monospace; font-size: 16px; color: var(--highlight) }
-
-        .modal-footer { display: flex; gap: 8px; margin-top: 16px }
-
-        .btn-primary { flex: 1; background: var(--highlight); color: #111; border: none; border-radius: 8px; padding: 12px; font-size: 12px; font-weight: 700; cursor: pointer }
-
-        .btn-primary:disabled { opacity: .4; cursor: not-allowed }
-
-        .btn-cancel { flex: 1; background: none; color: var(--muted); border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-size: 13px; cursor: pointer }
-
-        .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.95); z-index: 300; align-items: center; justify-content: center; cursor: pointer }
-
-        .lightbox.open { display: flex }
-
-        .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 8px }
-
-        .msg { padding: 10px 14px; border-radius: 8px; font-size: 13px; margin: 8px 0; text-align: center }
-
-        .msg.error { background: #2a0000; color: var(--danger) }
-
-        .msg.success { background: #002a1a; color: var(--success) }
-
-        .agent-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; max-height: 200px; overflow-y: auto }
-
-        .agent-item { padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface2); cursor: pointer; font-size: 13px }
-
-        .agent-item.selected { border-color: var(--success); background: #002a1a; color: var(--success) }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: sans-serif;
+            font-size: 14px;
+            min-height: 100vh
+        }
+
+        .login-page {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px
+        }
+
+        .login-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            width: 100%;
+            max-width: 380px;
+            text-align: center
+        }
+
+        .login-logo {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            margin-bottom: 8px
+        }
+
+        .login-sub {
+            font-size: 12px;
+            color: var(--muted);
+            letter-spacing: 2px;
+            margin-bottom: 32px
+        }
+
+        .btn-google {
+            width: 100%;
+            background: #fff;
+            color: #333;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px
+        }
+
+        .btn-google img {
+            width: 20px;
+            height: 20px
+        }
+
+        .header {
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100
+        }
+
+        .header-logo {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 3px
+        }
+
+        .header-logo span {
+            color: var(--warning)
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .staff-name {
+            font-size: 12px;
+            color: var(--muted)
+        }
+
+        .role-badge {
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 500
+        }
+
+        .role-super_admin {
+            background: #2a1a00;
+            color: var(--warning);
+            border: 1px solid var(--warning)
+        }
+
+        .role-admin {
+            background: #001a2a;
+            color: var(--info);
+            border: 1px solid var(--info)
+        }
+
+        .role-staff {
+            background: #1a2a00;
+            color: var(--success);
+            border: 1px solid var(--success)
+        }
+
+        .role-agent {
+            background: #2a002a;
+            color: #cc88ff;
+            border: 1px solid #cc88ff
+        }
+
+        .btn-logout {
+            font-size: 12px;
+            color: var(--muted);
+            background: none;
+            border: 1px solid var(--border);
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer
+        }
+
+        .tabs {
+            display: flex;
+            gap: 4px;
+            padding: 12px 20px;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            overflow-x: auto
+        }
+
+        .tab {
+            font-size: 12px;
+            padding: 6px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            color: var(--muted);
+            white-space: nowrap
+        }
+
+        .tab.active {
+            background: var(--surface2);
+            border-color: var(--border);
+            color: var(--text)
+        }
+
+        .tab-badge {
+            display: inline-block;
+            background: var(--danger);
+            color: #fff;
+            font-size: 10px;
+            padding: 1px 5px;
+            border-radius: 10px;
+            margin-left: 5px
+        }
+
+        .content {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto
+        }
+
+        .order-grid {
+            display: grid;
+            gap: 12px
+        }
+
+        .order-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer
+        }
+
+        .order-card:hover {
+            border-color: var(--accent)
+        }
+
+        .order-header {
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        .order-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .order-number {
+            font-family: monospace;
+            font-size: 13px;
+            font-weight: 700
+        }
+
+        .order-meta {
+            font-size: 12px;
+            color: var(--muted)
+        }
+
+        .status-badge {
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 500;
+            white-space: nowrap
+        }
+
+        .status-Pending-Review {
+            background: #2a1a00;
+            color: var(--warning);
+            border: 1px solid var(--warning)
+        }
+
+        .status-Slip-Uploaded {
+            background: #001a2a;
+            color: var(--info);
+            border: 1px solid var(--info)
+        }
+
+        .status-Error {
+            background: #2a0000;
+            color: var(--danger);
+            border: 1px solid var(--danger)
+        }
+
+        .status-Need-Info {
+            background: #2a002a;
+            color: #cc88ff;
+            border: 1px solid #cc88ff
+        }
+
+        .status-Waiting-for-Transfer {
+            background: #002a1a;
+            color: var(--success);
+            border: 1px solid var(--success)
+        }
+
+        .status-Processing {
+            background: #001a2a;
+            color: var(--info);
+            border: 1px solid var(--info)
+        }
+
+        .status-Assigned {
+            background: #1a2a00;
+            color: var(--success);
+            border: 1px solid var(--success)
+        }
+
+        .status-In-Progress {
+            background: #1a1000;
+            color: #ffcc44;
+            border: 1px solid #ffcc44
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            margin-bottom: 14px
+        }
+
+        .info-item label {
+            font-size: 10px;
+            letter-spacing: 1px;
+            color: var(--muted);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 3px
+        }
+
+        .info-item span {
+            font-size: 13px
+        }
+
+        .sensitive {
+            color: var(--warning)
+        }
+
+        .img-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 14px;
+            flex-wrap: wrap
+        }
+
+        .img-thumb {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--surface2);
+            cursor: pointer
+        }
+
+        .img-label {
+            font-size: 11px;
+            color: var(--muted);
+            text-align: center;
+            margin-top: 4px
+        }
+
+        .action-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap
+        }
+
+        .btn-confirm {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none
+        }
+
+        .btn-confirm-price {
+            background: var(--warning);
+            color: #000
+        }
+
+        .btn-confirm-slip {
+            background: var(--success);
+            color: #000
+        }
+
+        .btn-request-info {
+            background: var(--surface2);
+            color: var(--text);
+            border: 1px solid var(--border) !important
+        }
+
+        .btn-assign {
+            background: var(--info);
+            color: #fff
+        }
+
+        .btn-accept {
+            background: #ffcc44;
+            color: #000
+        }
+
+        .btn-complete {
+            background: var(--success);
+            color: #000
+        }
+
+        .btn-confirm:disabled {
+            opacity: .4;
+            cursor: not-allowed
+        }
+
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--muted)
+        }
+
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--border);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin .8s linear infinite;
+            margin: 0 auto 12px
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        .empty {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--muted);
+            font-size: 13px
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .9);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+            padding: 20px
+        }
+
+        .modal.open {
+            display: flex
+        }
+
+        .modal-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            width: 100%;
+            max-width: 440px;
+            max-height: 90vh;
+            overflow-y: auto
+        }
+
+        .modal-title {
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--highlight)
+        }
+
+        .modal-slip {
+            width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            background: var(--surface2)
+        }
+
+        .field {
+            margin-bottom: 14px
+        }
+
+        .field label {
+            display: block;
+            font-size: 11px;
+            letter-spacing: 1px;
+            color: var(--muted);
+            margin-bottom: 5px;
+            text-transform: uppercase
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 12px;
+            color: var(--text);
+            font-size: 14px;
+            outline: none
+        }
+
+        .modal-price-display {
+            background: var(--surface2);
+            border-radius: 8px;
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 14px
+        }
+
+        .modal-price-label {
+            font-size: 12px;
+            color: var(--muted)
+        }
+
+        .modal-price-value {
+            font-family: monospace;
+            font-size: 16px;
+            color: var(--highlight)
+        }
+
+        .modal-footer {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px
+        }
+
+        .btn-primary {
+            flex: 1;
+            background: var(--highlight);
+            color: #111;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer
+        }
+
+        .btn-primary:disabled {
+            opacity: .4;
+            cursor: not-allowed
+        }
+
+        .btn-cancel {
+            flex: 1;
+            background: none;
+            color: var(--muted);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 13px;
+            cursor: pointer
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .95);
+            z-index: 300;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer
+        }
+
+        .lightbox.open {
+            display: flex
+        }
+
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px
+        }
+
+        .msg {
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin: 8px 0;
+            text-align: center
+        }
+
+        .msg.error {
+            background: #2a0000;
+            color: var(--danger)
+        }
+
+        .msg.success {
+            background: #002a1a;
+            color: var(--success)
+        }
+
+        .agent-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 14px;
+            max-height: 200px;
+            overflow-y: auto
+        }
+
+        .agent-item {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--surface2);
+            cursor: pointer;
+            font-size: 13px
+        }
+
+        .agent-item.selected {
+            border-color: var(--success);
+            background: #002a1a;
+            color: var(--success)
+        }
 
         /* ── Toast Notification ── */
-        .toast-container { position: fixed; top: 70px; right: 16px; z-index: 500; display: flex; flex-direction: column; gap: 8px; pointer-events: none }
+        .toast-container {
+            position: fixed;
+            top: 70px;
+            right: 16px;
+            z-index: 500;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            pointer-events: none
+        }
 
-        .toast { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; font-size: 13px; min-width: 260px; max-width: 340px; animation: toastIn .3s ease; pointer-events: auto; line-height: 1.5 }
+        .toast {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 13px;
+            min-width: 260px;
+            max-width: 340px;
+            animation: toastIn .3s ease;
+            pointer-events: auto;
+            line-height: 1.5
+        }
 
-        .toast.new-order { border-color: var(--warning); background: #1a1200 }
+        .toast.new-order {
+            border-color: var(--warning);
+            background: #1a1200
+        }
 
-        @keyframes toastIn { from { transform: translateX(120%); opacity: 0 } to { transform: translateX(0); opacity: 1 } }
+        @keyframes toastIn {
+            from {
+                transform: translateX(120%);
+                opacity: 0
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1
+            }
+        }
 
         /* ── Copy Button ── */
-        .btn-copy { background: none; border: 1px solid var(--border); border-radius: 4px; color: var(--muted); padding: 1px 7px; font-size: 10px; cursor: pointer; margin-left: 6px; vertical-align: middle; transition: border-color .1s, color .1s }
+        .btn-copy {
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            color: var(--muted);
+            padding: 1px 7px;
+            font-size: 10px;
+            cursor: pointer;
+            margin-left: 6px;
+            vertical-align: middle;
+            transition: border-color .1s, color .1s
+        }
 
-        .btn-copy:hover { border-color: var(--accent); color: var(--text) }
+        .btn-copy:hover {
+            border-color: var(--accent);
+            color: var(--text)
+        }
 
-        .btn-copy.copied { border-color: var(--success); color: var(--success) }
+        .btn-copy.copied {
+            border-color: var(--success);
+            color: var(--success)
+        }
 
         /* ── Order Detail Overlay ── */
-        .order-detail-overlay { display: none; position: fixed; inset: 0; background: var(--bg); z-index: 150; overflow-y: auto }
+        .order-detail-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
+            z-index: 150;
+            overflow-y: auto
+        }
 
-        .order-detail-overlay.open { display: block }
+        .order-detail-overlay.open {
+            display: block
+        }
 
-        .order-detail-top { position: sticky; top: 0; background: var(--surface); border-bottom: 1px solid var(--border); padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; z-index: 10 }
+        .order-detail-top {
+            position: sticky;
+            top: 0;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 10
+        }
 
-        .order-detail-content { max-width: 800px; margin: 0 auto; padding: 24px 20px }
+        .order-detail-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 20px
+        }
 
         /* ── Info Type Checkboxes ── */
-        .info-type-checks { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px }
+        .info-type-checks {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 14px
+        }
 
-        .info-type-check-item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface2); cursor: pointer; font-size: 13px; user-select: none }
+        .info-type-check-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--surface2);
+            cursor: pointer;
+            font-size: 13px;
+            user-select: none
+        }
 
-        .info-type-check-item input[type="checkbox"] { accent-color: var(--info); width: 16px; height: 16px; cursor: pointer; flex-shrink: 0 }
+        .info-type-check-item input[type="checkbox"] {
+            accent-color: var(--info);
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            flex-shrink: 0
+        }
 
-        .info-type-check-item.checked { border-color: var(--info); background: #001a2a; color: var(--info) }
+        .info-type-check-item.checked {
+            border-color: var(--info);
+            background: #001a2a;
+            color: var(--info)
+        }
 
         /* ── Request / Error Log ── */
-        .order-log { margin-top: 16px; margin-bottom: 4px }
-        .order-log-title { font-size: 10px; letter-spacing: 1px; color: var(--muted); text-transform: uppercase; margin-bottom: 8px }
-        .log-entry { font-size: 12px; color: var(--muted); padding: 6px 10px; border-left: 2px solid var(--border); margin-bottom: 6px; line-height: 1.5 }
-        .log-entry.error-entry { border-color: var(--danger); color: #ff8888 }
+        .order-log {
+            margin-top: 16px;
+            margin-bottom: 4px
+        }
+
+        .order-log-title {
+            font-size: 10px;
+            letter-spacing: 1px;
+            color: var(--muted);
+            text-transform: uppercase;
+            margin-bottom: 8px
+        }
+
+        .log-entry {
+            font-size: 12px;
+            color: var(--muted);
+            padding: 6px 10px;
+            border-left: 2px solid var(--border);
+            margin-bottom: 6px;
+            line-height: 1.5
+        }
+
+        .log-entry.error-entry {
+            border-color: var(--danger);
+            color: #ff8888
+        }
 
         /* ── Error Resolve Modal ── */
-        .resolve-option { display: flex; align-items: center; gap: 10px; padding: 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface2); cursor: pointer; font-size: 13px; margin-bottom: 8px; user-select: none }
-        .resolve-option input[type="radio"] { accent-color: var(--danger); width: 16px; height: 16px; cursor: pointer; flex-shrink: 0 }
-        .resolve-option.selected { border-color: var(--danger); background: #2a0000; color: #ff8888 }
+        .resolve-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--surface2);
+            cursor: pointer;
+            font-size: 13px;
+            margin-bottom: 8px;
+            user-select: none
+        }
+
+        .resolve-option input[type="radio"] {
+            accent-color: var(--danger);
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            flex-shrink: 0
+        }
+
+        .resolve-option.selected {
+            border-color: var(--danger);
+            background: #2a0000;
+            color: #ff8888
+        }
     </style>
 </head>
 
@@ -246,19 +826,27 @@
             <div class="header-right">
                 <span class="staff-name" id="staffName"></span>
                 <span class="role-badge" id="roleBadge"></span>
-                <a id="historyLink" href="history.html" style="display:none;font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:5px 10px;border-radius:6px;">📋 ประวัติ</a>
+                <a id="historyLink" href="history.html"
+                    style="display:none;font-size:12px;color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:5px 10px;border-radius:6px;">📋
+                    ประวัติ</a>
                 <button class="btn-logout" onclick="logout()">ออกจากระบบ</button>
             </div>
         </div>
         <div class="tabs" id="tabsContainer"></div>
-        <div id="bulkBar" style="display:none;background:#1e2028;border-bottom:1px solid #2a2d36;padding:10px 20px;align-items:center;gap:12px;">
+        <div id="bulkBar"
+            style="display:none;background:#1e2028;border-bottom:1px solid #2a2d36;padding:10px 20px;align-items:center;gap:12px;">
             <span id="bulkCount" style="font-size:13px;color:#e8e8e8;">เลือก 0 ออเดอร์</span>
-            <button onclick="openBulkAssignModal()" style="background:#4488ff;color:#fff;border:none;padding:8px 16px;border-radius:8px;cursor:pointer;font-size:13px;">มอบหมายทั้งหมด 🎯</button>
-            <button onclick="clearSelection()" style="background:none;color:#666;border:1px solid #2a2d36;padding:8px 16px;border-radius:8px;cursor:pointer;font-size:13px;">ยกเลิก</button>
+            <button onclick="openBulkAssignModal()"
+                style="background:#4488ff;color:#fff;border:none;padding:8px 16px;border-radius:8px;cursor:pointer;font-size:13px;">มอบหมายทั้งหมด
+                🎯</button>
+            <button onclick="clearSelection()"
+                style="background:none;color:#666;border:1px solid #2a2d36;padding:8px 16px;border-radius:8px;cursor:pointer;font-size:13px;">ยกเลิก</button>
         </div>
         <div class="content">
             <div id="orderList" class="order-grid">
-                <div class="loading"><div class="spinner"></div>กำลังโหลด...</div>
+                <div class="loading">
+                    <div class="spinner"></div>กำลังโหลด...
+                </div>
             </div>
         </div>
     </div>
@@ -269,11 +857,14 @@
             <div class="modal-title">กำหนดราคาแพ็คเกจ 💰</div>
             <div id="priceModalImages" class="img-row"></div>
             <div id="priceOrderInfo" style="margin-bottom:14px;font-size:13px;color:var(--muted);"></div>
-            <div class="field"><label>ราคาที่ต้องชำระ (บาท)</label><input type="number" id="priceInput" placeholder="กรอกราคา"></div>
+            <div class="field"><label>ราคาที่ต้องชำระ (บาท)</label><input type="number" id="priceInput"
+                    placeholder="กรอกราคา"></div>
             <div id="priceMsg"></div>
-            <div id="priceTotalDisplay" style="display:none;background:var(--surface2);border-radius:8px;padding:12px 16px;justify-content:space-between;align-items:center;margin-bottom:14px;">
+            <div id="priceTotalDisplay"
+                style="display:none;background:var(--surface2);border-radius:8px;padding:12px 16px;justify-content:space-between;align-items:center;margin-bottom:14px;">
                 <span style="font-size:12px;color:var(--muted);">ราคารวมทั้งหมด</span>
-                <span id="priceTotalValue" style="font-family:monospace;font-size:18px;color:var(--highlight);">฿0</span>
+                <span id="priceTotalValue"
+                    style="font-family:monospace;font-size:18px;color:var(--highlight);">฿0</span>
             </div>
             <div class="modal-footer">
                 <button class="btn-cancel" onclick="closePriceModal()">ยกเลิก</button>
@@ -291,7 +882,8 @@
                 <span class="modal-price-label">ยอดที่ต้องโอน</span>
                 <span class="modal-price-value" id="slipExpectedPrice">฿0</span>
             </div>
-            <div class="field"><label>ยอดในสลิป (บาท)</label><input type="number" id="slipAmountInput" placeholder="กรอกยอดในสลิป"></div>
+            <div class="field"><label>ยอดในสลิป (บาท)</label><input type="number" id="slipAmountInput"
+                    placeholder="กรอกยอดในสลิป"></div>
             <div id="slipMsg"></div>
             <div class="modal-footer">
                 <button class="btn-cancel" onclick="closeSlipModal()">ยกเลิก</button>
@@ -349,13 +941,16 @@
             <div id="uploadSlipOrderInfo" style="margin-bottom:14px;font-size:13px;color:var(--muted);"></div>
             <div class="field">
                 <label>เลือกไฟล์สลิป</label>
-                <input type="file" id="uploadSlipFile" accept="image/*" style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-size:13px;outline:none;" onchange="previewUploadSlip(this)">
+                <input type="file" id="uploadSlipFile" accept="image/*"
+                    style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;color:var(--text);font-size:13px;outline:none;"
+                    onchange="previewUploadSlip(this)">
             </div>
             <div id="uploadSlipPreview" style="margin-bottom:12px;"></div>
             <div id="uploadSlipMsg"></div>
             <div class="modal-footer">
                 <button class="btn-cancel" onclick="closeUploadSlipModal()">ยกเลิก</button>
-                <button class="btn-primary" id="confirmUploadSlipBtn" onclick="submitStaffUploadSlip()">อัปโหลด ✅</button>
+                <button class="btn-primary" id="confirmUploadSlipBtn" onclick="submitStaffUploadSlip()">อัปโหลด
+                    ✅</button>
             </div>
         </div>
     </div>
@@ -365,9 +960,12 @@
         <div class="modal-box">
             <div class="modal-title">แก้ไขข้อมูลลูกค้า ✏️</div>
             <div id="editInfoOrderInfo" style="margin-bottom:14px;font-size:13px;color:var(--muted);"></div>
-            <div class="field"><label>Email / ID</label><input type="text" id="editEmailId" placeholder="ไม่เปลี่ยนถ้าเว้นว่าง"></div>
-            <div class="field"><label>Password</label><input type="text" id="editPassword" placeholder="ไม่เปลี่ยนถ้าเว้นว่าง"></div>
-            <div class="field"><label>UID</label><input type="text" id="editUid" placeholder="ไม่เปลี่ยนถ้าเว้นว่าง"></div>
+            <div class="field"><label>Email / ID</label><input type="text" id="editEmailId"
+                    placeholder="ไม่เปลี่ยนถ้าเว้นว่าง"></div>
+            <div class="field"><label>Password</label><input type="text" id="editPassword"
+                    placeholder="ไม่เปลี่ยนถ้าเว้นว่าง"></div>
+            <div class="field"><label>UID</label><input type="text" id="editUid" placeholder="ไม่เปลี่ยนถ้าเว้นว่าง">
+            </div>
             <div id="editInfoMsg"></div>
             <div class="modal-footer">
                 <button class="btn-cancel" onclick="closeEditInfoModal()">ยกเลิก</button>
@@ -396,15 +994,18 @@
                 </label>
             </div>
             <div id="errorResolveManualInput" style="display:none;margin-top:8px;">
-                <div class="field"><label>ยอดที่ต้องการบันทึก (บาท)</label><input type="number" id="errorManualAmount" placeholder="กรอกยอด"></div>
+                <div class="field"><label>ยอดที่ต้องการบันทึก (บาท)</label><input type="number" id="errorManualAmount"
+                        placeholder="กรอกยอด"></div>
             </div>
             <div id="errorResolveNoteInput" style="display:none;margin-top:8px;">
-                <div class="field"><label>หมายเหตุ</label><input type="text" id="errorNoteText" placeholder="กรอกหมายเหตุ"></div>
+                <div class="field"><label>หมายเหตุ</label><input type="text" id="errorNoteText"
+                        placeholder="กรอกหมายเหตุ"></div>
             </div>
             <div id="errorResolveMsg"></div>
             <div class="modal-footer">
                 <button class="btn-cancel" onclick="closeErrorResolveModal()">ยกเลิก</button>
-                <button class="btn-primary" id="confirmErrorResolveBtn" onclick="submitErrorResolve()" style="background:var(--danger);color:#fff;">ยืนยัน ✅</button>
+                <button class="btn-primary" id="confirmErrorResolveBtn" onclick="submitErrorResolve()"
+                    style="background:var(--danger);color:#fff;">ยืนยัน ✅</button>
             </div>
         </div>
     </div>
@@ -416,11 +1017,14 @@
     <div class="order-detail-overlay" id="orderDetailOverlay">
         <div class="order-detail-top">
             <div style="display:flex;align-items:center;gap:12px;">
-                <button onclick="closeOrderDetail()" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:20px;line-height:1;padding:0 2px;">←</button>
+                <button onclick="closeOrderDetail()"
+                    style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:20px;line-height:1;padding:0 2px;">←</button>
                 <span id="orderDetailNum" style="font-family:monospace;font-size:14px;font-weight:700;"></span>
                 <span id="orderDetailStatus" class="status-badge"></span>
             </div>
-            <button onclick="closeOrderDetail()" style="background:none;border:1px solid var(--border);color:var(--muted);border-radius:6px;padding:5px 12px;cursor:pointer;font-size:12px;">✕ ปิด</button>
+            <button onclick="closeOrderDetail()"
+                style="background:none;border:1px solid var(--border);color:var(--muted);border-radius:6px;padding:5px 12px;cursor:pointer;font-size:12px;">✕
+                ปิด</button>
         </div>
         <div class="order-detail-content" id="orderDetailBody"></div>
     </div>
@@ -497,7 +1101,7 @@
                 gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
                 osc.start(ctx.currentTime);
                 osc.stop(ctx.currentTime + 0.5);
-            } catch (e) {}
+            } catch (e) { }
         }
 
         function showToast(msg, type = '') {
@@ -526,19 +1130,37 @@
         }
 
         /* ── Copy ── */
-        function copyText(text, btn) {
-            navigator.clipboard.writeText(text).then(() => {
-                const orig = btn.textContent;
-                btn.textContent = '✓';
-                btn.classList.add('copied');
-                setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 1500);
-            }).catch(() => {});
+        async function copyText(text, btn, order) {
+            navigator.clipboard.writeText(text).then(async () => {
+                btn.textContent = 'คัดลอกแล้ว ✓'
+                btn.classList.add('copied')
+                setTimeout(() => { btn.textContent = 'copy'; btn.classList.remove('copied') }, 2000)
+
+                // บันทึก log
+                if (order) {
+                    const now = new Date().toLocaleString('th-TH')
+                    const logEntry = `${now} | ${currentStaff.email}: copy Password`
+                    const existingLog = order.requestLog || ''
+                    const newLog = existingLog ? `${existingLog}\n${logEntry}` : logEntry
+                    await postJSON(SCRIPT_URL, { action: 'appendLog', data: { row: order.row, log: newLog } })
+                }
+            })
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('orderDetailBody').addEventListener('click', e => {
-                const btn = e.target.closest('.btn-copy[data-copy]');
-                if (btn) copyText(btn.dataset.copy, btn);
+            document.getElementById('orderDetailBody').addEventListener('click', async e => {
+                const copyBtn = e.target.closest('.btn-copy[data-copy]');
+                if (copyBtn) {
+                    copyText(copyBtn.dataset.copy, copyBtn);
+                    if (copyBtn.dataset.audit && copyBtn.dataset.row) {
+                        const now = new Date().toLocaleString('th-TH');
+                        const logEntry = `${now} | ${currentStaff.email}: Copy ${copyBtn.dataset.field}`;
+                        postJSON(SCRIPT_URL, { action: 'appendLog', data: { row: Number(copyBtn.dataset.row), log: logEntry } });
+                    }
+                    return;
+                }
+                const toggleBtn = e.target.closest('.btn-toggle-pass');
+                if (toggleBtn) await togglePassword(toggleBtn);
             });
         });
 
@@ -688,7 +1310,14 @@
             function copyField(label, val, cls = '') {
                 if (!val || val === '***') return '';
                 const safe = String(val).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-                return `<div class="info-item"><label>${label}</label><span${cls ? ` class="${cls}"` : ''}>${val} <button class="btn-copy" data-copy="${safe}">copy</button></span></div>`;
+                const auditAttrs = cls === 'sensitive' ? ` data-row="${order.row}" data-field="${label}" data-audit="1"` : '';
+                return `<div class="info-item"><label>${label}</label><span${cls ? ` class="${cls}"` : ''}>${val} <button class="btn-copy" data-copy="${safe}"${auditAttrs}>copy</button></span></div>`;
+            }
+
+            function passwordField(ord) {
+                if (!ord.pass || ord.pass === '***') return '';
+                const safe = String(ord.pass).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                return `<div class="info-item"><label>Password</label><span class="sensitive"><span id="pass-${ord.orderNumber}">••••••</span><button class="btn-toggle-pass" data-order="${ord.orderNumber}" data-pass="${safe}" data-row="${ord.row}" style="margin-left:6px;font-size:11px;padding:2px 7px;background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:5px;cursor:pointer;">👁️</button><button class="btn-copy" data-copy="${safe}" data-row="${ord.row}" data-field="Password" data-audit="1" style="margin-left:4px;">copy</button></span></div>`;
             }
 
             document.getElementById('orderDetailBody').innerHTML = `
@@ -704,7 +1333,7 @@
                     ${order.level ? `<div class="info-item"><label>Level</label><span>${order.level}</span></div>` : ''}
                     ${order.server ? `<div class="info-item"><label>Server</label><span>${order.server}</span></div>` : ''}
                     ${copyField('Email/ID', order.emailId, 'sensitive')}
-                    ${copyField('Password', order.pass, 'sensitive')}
+                    ${passwordField(order)}
                     ${copyField('UID', order.uid, 'sensitive')}
                     ${order.agentEmail ? `<div class="info-item"><label>Agent</label><span>${order.agentEmail}</span></div>` : ''}
                     <div class="info-item"><label>วันที่</label><span>${new Date(order.date).toLocaleDateString('th-TH')}</span></div>
@@ -1134,6 +1763,25 @@
 
             if (res.success) { closeErrorResolveModal(); loadOrders(); }
             else { document.getElementById('errorResolveMsg').innerHTML = '<div class="msg error">เกิดข้อผิดพลาด</div>'; btn.disabled = false; btn.textContent = 'ยืนยัน ✅'; }
+        }
+
+        /* ── Password Toggle (Audit Log) ── */
+        async function togglePassword(btn) {
+            const orderNumber = btn.dataset.order;
+            const pass = btn.dataset.pass;
+            const row = btn.dataset.row;
+            const el = document.getElementById(`pass-${orderNumber}`);
+            if (!el) return;
+            if (el.textContent === '••••••') {
+                el.textContent = pass;
+                btn.textContent = '🙈';
+                const now = new Date().toLocaleString('th-TH');
+                const logEntry = `${now} | ${currentStaff.email}: เปิดดู Password`;
+                await postJSON(SCRIPT_URL, { action: 'appendLog', data: { row: Number(row), log: logEntry } });
+            } else {
+                el.textContent = '••••••';
+                btn.textContent = '👁️';
+            }
         }
 
         /* ── Auto refresh ── */

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import PackageGrid from '../components/PackageGrid'
 import Cart from '../components/Cart'
 import Breadcrumb from '../components/Breadcrumb'
+import HowToSection from '../components/HowToSection'
 import '../styles/topup.css'
 
 
@@ -40,16 +41,16 @@ export default function Topup() {
     }, [])
 
     const addToCart = (pkg) => {
-    setCart(prev => {
-        if (pkg.isOther) {
-            const id = `other_${Date.now()}`
-            return [...prev, { ...pkg, pkg: id, displayName: 'แพ็คเกจอื่นๆ', qty: 1, id }]
-        }
-        const existing = prev.find(i => i.pkg === pkg.pkg)
-        if (existing) return prev.map(i => i.pkg === pkg.pkg ? { ...i, qty: i.qty + 1 } : i)
-        return [...prev, { ...pkg, qty: 1 }]
-    })
-}
+        setCart(prev => {
+            if (pkg.isOther) {
+                const id = `other_${Date.now()}`
+                return [...prev, { ...pkg, pkg: id, displayName: 'แพ็คเกจอื่นๆ', qty: 1, id }]
+            }
+            const existing = prev.find(i => i.pkg === pkg.pkg)
+            if (existing) return prev.map(i => i.pkg === pkg.pkg ? { ...i, qty: i.qty + 1 } : i)
+            return [...prev, { ...pkg, qty: 1 }]
+        })
+    }
 
     const removeFromCart = (pkgName) => setCart(prev => prev.filter(i => i.pkg !== pkgName))
 
@@ -101,6 +102,9 @@ export default function Topup() {
                         </div>
                     )}
 
+                    {gameData.howToImages && gameData.howToImages.length > 0 && (
+                        <HowToSection images={gameData.howToImages} />
+                    )}
                     <PackageGrid packages={packages} onAdd={addToCart} />
                 </div>
                 <div className="topup-right">

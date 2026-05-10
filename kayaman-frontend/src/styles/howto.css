@@ -1,0 +1,37 @@
+.howto-section {
+  margin-bottom: 20px;
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.howto-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--bg-secondary);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  user-select: none;
+}
+.howto-header:hover { background: var(--bg-card); }
+.howto-arrow {
+  font-size: 12px;
+  color: var(--gray);
+  transition: transform 0.2s;
+}
+.howto-arrow.open { transform: rotate(180deg); }
+.howto-images {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--bg);
+}
+.howto-img {
+  width: 100%;
+  border-radius: 6px;
+  display: block;
+}
