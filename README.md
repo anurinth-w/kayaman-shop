@@ -9,7 +9,7 @@
 
 | Site | URL |
 |---|---|
-| Customer Portal | [order.kayamanshop.com](https://order.kayamanshop.com) |
+| Customer Portal | [order.kayamanshop.com](-) |
 
 ---
 
